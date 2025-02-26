@@ -1,7 +1,7 @@
 '''
 To organize your FIFA manager project using Object-Oriented Programming (OOP), we need to structure the classes, their attributes, and methods in a logical and scalable way. Below is a refined plan for your project:
 
----
+--->
 
 ### **1. Core Classes and Their Responsibilities**
 

@@ -175,3 +175,5 @@ class FIFAManager:
 #         """Update the market with new players."""
 #         self.market.extend(players)
 #         print(f"Market updated with {len(players)} new players.")
+
+

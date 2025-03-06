@@ -12,10 +12,10 @@ using namespace std;
 // vector<NationalTeam> teams;
 
 template <typename T>
-T extractInfo(const std::string& line) {
+T extractInfo(const string& line) {
     T info;
-    std::istringstream iss(line);
-    std::string label;
+    istringstream iss(line);
+    string label;
     iss >> label >> info;  // Extract label and value into the template variable
     return info;
 }
@@ -69,6 +69,50 @@ Player load_player(const string& player_name) {
     return;
   }
   
+  //loading addition info
+  string line;
+
+  int salary, price, goals;
+  double atk, def;
+  string national_team, club_team, type, nationality;
+
+  //getting info
+  if (getline(file, line)) {  // Extract "Nationality: ..."
+    nationality = extractInfo<string>(line);
+  }
+  if (getline(file, line)) {  // Extract "Type: ..."
+    type = extractInfo<int>(line);
+  }
+  if (getline(file, line)) {  // Extract "NationalTeam: ..."
+    national_team = extractInfo<int>(line);
+  }
+  if (getline(file, line)) {  // Extract "ClubTeam: ..."
+    club_team = extractInfo<int>(line);
+  }
+  if (getline(file, line)) {  // Extract "Salary: ..."
+    salary = extractInfo<int>(line);
+  }
+  if (getline(file, line)) {  // Extract "Goals: ..."
+    goals = extractInfo<int>(line);
+  }
+  if (getline(file, line)) {  // Extract "Attack: ..."
+    atk = extractInfo<int>(line);
+  }
+  if (getline(file, line)) {  // Extract "Defense: ..."
+    def = extractInfo<int>(line);
+  }
+
+  //setting info
+  player.set_info("nationality", nationality);
+  player.set_info("type", type);
+  player.set_info("national_team", national_team);
+  player.set_info("club_team", club_team);
+  player.set_info("salary", salary);
+  player.set_info("goals", goals);
+  player.set_info("atkatk", atk);
+  player.set_info("defdef", def);
+
+  return player;
 }
 
 Coach load_coach(const string& coach_name) {
@@ -99,10 +143,10 @@ Coach load_coach(const string& coach_name) {
 
   //getting info
   if (getline(file, line)) {  // Extract "Team: ..."
-      team = extractInfo<string>(line);
+    team = extractInfo<string>(line);
   }
   if (getline(file, line)) {  // Extract "Tactics: ..."
-      tactics = extractInfo<int>(line);
+    tactics = extractInfo<int>(line);
   }
 
   //setting info
@@ -143,27 +187,25 @@ void load_team_data(const string& team_name) {
     NationalTeam national_team(team_name);
     //set info
     while (getline(file, line)) {
-      //set rank
-      if (line.find("Rank:") != std::string::npos) {
-        int rank = extractInfo<int>(line);
-        national_team.set_rank(rank);
-
-      } else if (line.find("WorldCup:") != std::string::npos){
+      if (line.find("WorldCup:") != string::npos){
         int world_cup_won = extractInfo<int>(line);
         national_team.set_world_cup(world_cup_won);
+      } 
 
-      } else  if (line.find("Coach:") != std::string::npos) {
+      if (line.find("Coach:") != string::npos) {
         string coach_name = extractInfo<string>(line);
 
         //create & set coach
         Coach loaded_coach = load_coach(coach_name);
         national_team.set_coach(loaded_coach);
 
-      } else if (line.find("Squad:") != std::string::npos) {
-        std::vector<Player> squad_players;
+      }
+      
+      if (line.find("Squad:") != string::npos) {
+        vector<Player> squad_players;
         string squad_str = extractInfo<string>(line);
-        std::stringstream ss(squad_str);
-        std::string player_name;
+        stringstream ss(squad_str);
+        string player_name;
         while (getline(ss, player_name, ',')) {
             squad_players.push_back(Player(player_name));
         }

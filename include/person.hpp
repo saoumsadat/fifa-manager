@@ -11,7 +11,6 @@ public:
   Person(std::string name, int age);
   std::string get_name();
   int Person::get_age();
-  virtual void update_info(); 
   virtual void display_info();
   virtual ~Person() {}
 };

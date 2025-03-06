@@ -6,6 +6,7 @@ Player::Player(const std::string& name, int age)
   : Person(name, age) {
     this->salary = 50;
     this->price = 0;
+    this->goals = 0;
     this->type = "Unknown";
     this->national_team = "None";
     this->club_team = "None";
@@ -13,21 +14,43 @@ Player::Player(const std::string& name, int age)
     this->def = 0;
   }
 
-
-void Player::update_info() {
-  // Default update behavior, if necessary
+//national_team, club_team, type, nationality
+void Player::set_info(std::string title, std::string info) {
+  if (title == "national_team") {
+    this->national_team = info;
+  } else if (title == "club_team") {
+    this->club_team = info;
+  } else if (title == type) {
+    this->type = info;
+  } else if (title == "nationality"){
+    this->nationality = info;
+  } else {
+    std::cout << "Unknown title" << std::endl;
+  }
 }
 
-void Player::update_info(std::string title, std::string info) {
-  // if (title == "team") {
-  //   team = info;
-  // } else if (title == "type") {
-  //   type = info;
-  // }
+//salary, price, goals
+void Player::set_info(std::string title, int num) {
+  if (title == "salary") {
+    this->salary = num;
+  } else if (title == "price") {
+    this->price = num;
+  } else if (title == "goals") {
+    this->goals = num;
+  } else {
+    std::cout << "Unknown title" << std::endl;
+  }
 }
 
-void Player::update_info(double new_salary) {
-  salary = new_salary;
+//atk, def
+void Player::set_info(std::string title, double num) {
+  if (title == "atk") {
+    this->atk = num;
+  } else if (title == "def") {
+    this->def = num;
+  } else {
+    std::cout << "Unknown title" << std::endl;
+  }
 }
 
 void Player::display_info() {

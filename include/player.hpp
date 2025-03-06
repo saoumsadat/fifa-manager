@@ -5,17 +5,18 @@
 
 class Player : public Person {
 private:
-  int salary;
-  int price;
+  int salary, price, goals;
   double atk, def;
-  std::string national_team, club_team, type;
+  std::string national_team, club_team, type, nationality;
 
 public:
   Player() : Person("", 0) {}  // Default constructor
   Player(const std::string& name, int age);
-  void update_info() override;
-  void update_info(std::string title, std::string info);
-  void update_info(double salary);
+
+  void set_info(std::string title, std::string info); //national_team, club_team, type, nationality
+  void set_info(std::string title, int num);  //salary, price, goals
+  void set_info(std::string title, double num);  //atk, def
+
   void display_info() override;
 };
 

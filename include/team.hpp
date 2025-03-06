@@ -20,6 +20,7 @@ public:
   void set_rank(int new_rank);
   void set_world_cup(int new_world_cup_count);
   void set_coach(Coach new_coach);
+  
 };
 
 #endif

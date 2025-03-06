@@ -1,0 +1,18 @@
+
+Name: RealMadrid
+UCL: 5
+Coach: RMCoach
+Squad: SubA1,P3,SubB3,A5,P7,SubP2,SubB1,P8,B5,A3,A6
+Substitutes: SubA2,SubB4,A2,P9,B10
+TransferList: P11,A1,B3,B8,SubP3
+Funds: 2000
+Tactics: 80
+
+Name: Barcelona
+UCL: 2
+Coach: BarcaCoach
+Squad: P2,P4,P5,P6,P10,SubP4,SubP5,A4,A7,A8,A9
+Substitutes: SubA3,SubA4,SubA5,B2,B4
+TransferList: B6,B7,B9,B11,SubB2
+Funds: 2000
+Tactics: 80

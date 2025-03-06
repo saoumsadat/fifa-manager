@@ -5,14 +5,21 @@
 
 class Person {
 protected:
-  std::string name;
-  int age;
+  std::string name, nationality;
+  int age, salary;
 public:
   Person(std::string name, int age);
+
   std::string get_name();
-  int Person::get_age();
+  std::string get_nationality();
+  int get_age();
+  int get_salary();
+  
+  void set_info(int salary);
+  void set_info(std::string nationality);
+
   virtual void display_info();
-  virtual ~Person() {}
+
 };
 
 #endif

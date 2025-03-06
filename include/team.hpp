@@ -17,10 +17,12 @@ protected:
   double overall_atk, overall_def;
 public:
   Team(std::string name);
-  void set_rank(int new_rank);
   void set_world_cup(int new_world_cup_count);
   void set_coach(Coach new_coach);
-  
+  void add_to_squad(Player p, int i);
+  void add_to_sub(Player p);
+
+  Coach get_coach();
 };
 
 #endif

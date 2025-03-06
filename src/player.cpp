@@ -4,7 +4,6 @@
 
 Player::Player(const std::string& name, int age)
   : Person(name, age) {
-    this->salary = 50;
     this->price = 0;
     this->goals = 0;
     this->type = "Unknown";
@@ -14,26 +13,24 @@ Player::Player(const std::string& name, int age)
     this->def = 0;
   }
 
-//national_team, club_team, type, nationality
+//national_team, club_team, type [nationality handled by parent -> 1 argument]
 void Player::set_info(std::string title, std::string info) {
+  
   if (title == "national_team") {
     this->national_team = info;
   } else if (title == "club_team") {
     this->club_team = info;
-  } else if (title == type) {
+  } else if (title == "type") {
     this->type = info;
-  } else if (title == "nationality"){
-    this->nationality = info;
   } else {
-    std::cout << "Unknown title" << std::endl;
+    // std::cout << "Unknown title" ;
   }
 }
 
-//salary, price, goals
+//price, goals
 void Player::set_info(std::string title, int num) {
-  if (title == "salary") {
-    this->salary = num;
-  } else if (title == "price") {
+  
+  if (title == "price") {
     this->price = num;
   } else if (title == "goals") {
     this->goals = num;
@@ -44,6 +41,7 @@ void Player::set_info(std::string title, int num) {
 
 //atk, def
 void Player::set_info(std::string title, double num) {
+  
   if (title == "atk") {
     this->atk = num;
   } else if (title == "def") {
@@ -54,8 +52,11 @@ void Player::set_info(std::string title, double num) {
 }
 
 void Player::display_info() {
-  // Person::display_info();  // Call base class method
-  // std::cout << "Team: " << team << std::endl;
-  // std::cout << "Salary: $" << salary << std::endl;
-  // std::cout << "Type: " << type << std::endl;
+  Person::display_info();  // Call base class method first
+  std::cout << "Type: " << this->type << std::endl;
+  std::cout << "National Team: " << this->national_team << std::endl;
+  std::cout << "Club Team: " << this->club_team << std::endl;
+  std::cout << "Goals: " << this->goals << std::endl;
+  std::cout << "Attacking Power: " << this->atk << std::endl;
+  std::cout << "Defending Power: " << this->def << std::endl;
 }

@@ -1,0 +1,18 @@
+
+Name: PortugalCoach
+Age: 42
+Team: Portugal
+Tactics: 85
+Salary: 100
+
+Name: ArgentinaCoach
+Age: 42
+Team: Argentina
+Tactics: 85
+Salary: 100
+
+Name: BrazilCoach
+Age: 42
+Team: Brazil
+Tactics: 85
+Salary: 100

@@ -2,7 +2,6 @@
 #define PERSON_HPP
 
 #include <iostream>
-#include <map>
 
 class Person {
 protected:
@@ -10,7 +9,9 @@ protected:
   int age;
 public:
   Person(std::string name, int age);
-  virtual void update_info() = 0;  //pure virtual function as Name, age cannot be overriden
+  std::string get_name();
+  int Person::get_age();
+  virtual void update_info(); 
   virtual void display_info();
   virtual ~Person() {}
 };

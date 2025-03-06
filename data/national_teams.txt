@@ -1,0 +1,24 @@
+
+Name: Portugal
+Rank: 1
+WorldCup: 0
+Coach: PortugalCoach
+Squad: [P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11]
+Substitutes: [SubP1,SubP2,SubP3,SubP4,SubP5]
+Reserves: [RP1,RP2,RP3,RP4,RP5]
+
+Name: Argentina
+Rank: 2
+WorldCup: 2
+Coach: ArgentinaCoach
+Squad: [A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11]
+Substitutes: [SubA1,SubA2,SubA3,SubA4,SubA5]
+Reserves: [RA1,RA2,RA3,RA4,RA5]
+
+Name: Brazil
+Rank: 3
+WorldCup: 5
+Coach: BrazilCoach
+Squad: [B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11]
+Substitutes: [SubB1,SubB2,SubB3,SubB4,SubB5]
+Reserves: [RB1,RB2,RB3,RB4,RB5]

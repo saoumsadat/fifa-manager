@@ -1,0 +1,629 @@
+Name: P1
+Rank: 1
+Age: 25
+Nationality: Portugal
+Type: Attacker
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 10
+
+Name: P2
+Rank: 2
+Age: 26
+Nationality: Portugal
+Type: Midfielder
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 8
+
+Name: P3
+Rank: 3
+Age: 27
+Nationality: Portugal
+Type: Defender
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 7
+
+Name: P4
+Rank: 4
+Age: 28
+Nationality: Portugal
+Type: Attacker
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 6
+
+Name: P5
+Rank: 5
+Age: 29
+Nationality: Portugal
+Type: Midfielder
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 5
+
+Name: P6
+Rank: 6
+Age: 30
+Nationality: Portugal
+Type: Defender
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 4
+
+Name: P7
+Rank: 7
+Age: 31
+Nationality: Portugal
+Type: Attacker
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 3
+
+Name: P8
+Rank: 8
+Age: 32
+Nationality: Portugal
+Type: Midfielder
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 2
+
+Name: P9
+Rank: 9
+Age: 33
+Nationality: Portugal
+Type: Defender
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: P10
+Rank: 10
+Age: 34
+Nationality: Portugal
+Type: Attacker
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: P11
+Rank: 11
+Age: 35
+Nationality: Portugal
+Type: Midfielder
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: SubP1
+Rank: 12
+Age: 24
+Nationality: Portugal
+Type: Defender
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 2
+
+Name: SubP2
+Rank: 13
+Age: 23
+Nationality: Portugal
+Type: Attacker
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: SubP3
+Rank: 14
+Age: 22
+Nationality: Portugal
+Type: Midfielder
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: SubP4
+Rank: 15
+Age: 21
+Nationality: Portugal
+Type: Defender
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: SubP5
+Rank: 16
+Age: 20
+Nationality: Portugal
+Type: Attacker
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RP1
+Rank: 17
+Age: 19
+Nationality: Portugal
+Type: Midfielder
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RP2
+Rank: 18
+Age: 18
+Nationality: Portugal
+Type: Defender
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RP3
+Rank: 19
+Age: 17
+Nationality: Portugal
+Type: Attacker
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RP4
+Rank: 20
+Age: 16
+Nationality: Portugal
+Type: Midfielder
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RP5
+Rank: 21
+Age: 15
+Nationality: Portugal
+Type: Defender
+NationalTeam: Portugal
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: A1
+Rank: 22
+Age: 25
+Nationality: Argentina
+Type: Attacker
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 10
+
+Name: A2
+Rank: 23
+Age: 26
+Nationality: Argentina
+Type: Midfielder
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 8
+
+Name: A3
+Rank: 24
+Age: 27
+Nationality: Argentina
+Type: Defender
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 7
+
+Name: A4
+Rank: 25
+Age: 28
+Nationality: Argentina
+Type: Attacker
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 6
+
+Name: A5
+Rank: 26
+Age: 29
+Nationality: Argentina
+Type: Midfielder
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 5
+
+Name: A6
+Rank: 27
+Age: 30
+Nationality: Argentina
+Type: Defender
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 4
+
+Name: A7
+Rank: 28
+Age: 31
+Nationality: Argentina
+Type: Attacker
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 3
+
+Name: A8
+Rank: 29
+Age: 32
+Nationality: Argentina
+Type: Midfielder
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 2
+
+Name: A9
+Rank: 30
+Age: 33
+Nationality: Argentina
+Type: Defender
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: A10
+Rank: 31
+Age: 34
+Nationality: Argentina
+Type: Attacker
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: A11
+Rank: 32
+Age: 35
+Nationality: Argentina
+Type: Midfielder
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: SubA1
+Rank: 33
+Age: 24
+Nationality: Argentina
+Type: Defender
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 2
+
+Name: SubA2
+Rank: 34
+Age: 23
+Nationality: Argentina
+Type: Attacker
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: SubA3
+Rank: 35
+Age: 22
+Nationality: Argentina
+Type: Midfielder
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: SubA4
+Rank: 36
+Age: 21
+Nationality: Argentina
+Type: Defender
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: SubA5
+Rank: 37
+Age: 20
+Nationality: Argentina
+Type: Attacker
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RA1
+Rank: 38
+Age: 19
+Nationality: Argentina
+Type: Midfielder
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RA2
+Rank: 39
+Age: 18
+Nationality: Argentina
+Type: Defender
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RA3
+Rank: 40
+Age: 17
+Nationality: Argentina
+Type: Attacker
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RA4
+Rank: 41
+Age: 16
+Nationality: Argentina
+Type: Midfielder
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RA5
+Rank: 42
+Age: 15
+Nationality: Argentina
+Type: Defender
+NationalTeam: Argentina
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: B1
+Rank: 43
+Age: 25
+Nationality: Brazil
+Type: Attacker
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 10
+
+Name: B2
+Rank: 44
+Age: 26
+Nationality: Brazil
+Type: Midfielder
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 8
+
+Name: B3
+Rank: 45
+Age: 27
+Nationality: Brazil
+Type: Defender
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 7
+
+Name: B4
+Rank: 46
+Age: 28
+Nationality: Brazil
+Type: Attacker
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 6
+
+Name: B5
+Rank: 47
+Age: 29
+Nationality: Brazil
+Type: Midfielder
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 5
+
+Name: B6
+Rank: 48
+Age: 30
+Nationality: Brazil
+Type: Defender
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 4
+
+Name: B7
+Rank: 49
+Age: 31
+Nationality: Brazil
+Type: Attacker
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 3
+
+Name: B8
+Rank: 50
+Age: 32
+Nationality: Brazil
+Type: Midfielder
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 2
+
+Name: B9
+Rank: 51
+Age: 33
+Nationality: Brazil
+Type: Defender
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: B10
+Rank: 52
+Age: 34
+Nationality: Brazil
+Type: Attacker
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: B11
+Rank: 53
+Age: 35
+Nationality: Brazil
+Type: Midfielder
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: SubB1
+Rank: 54
+Age: 24
+Nationality: Brazil
+Type: Defender
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 2
+
+Name: SubB2
+Rank: 55
+Age: 23
+Nationality: Brazil
+Type: Attacker
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: SubB3
+Rank: 56
+Age: 22
+Nationality: Brazil
+Type: Midfielder
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 1
+
+Name: SubB4
+Rank: 57
+Age: 21
+Nationality: Brazil
+Type: Defender
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: SubB5
+Rank: 58
+Age: 20
+Nationality: Brazil
+Type: Attacker
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RB1
+Rank: 59
+Age: 19
+Nationality: Brazil
+Type: Midfielder
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RB2
+Rank: 60
+Age: 18
+Nationality: Brazil
+Type: Defender
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RB3
+Rank: 61
+Age: 17
+Nationality: Brazil
+Type: Attacker
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RB4
+Rank: 62
+Age: 16
+Nationality: Brazil
+Type: Midfielder
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0
+
+Name: RB5
+Rank: 63
+Age: 15
+Nationality: Brazil
+Type: Defender
+NationalTeam: Brazil
+ClubTeam: None
+Salary: 1000
+Goals: 0

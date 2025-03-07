@@ -1,6 +1,5 @@
-#include "../include/player.hpp"
-#include "../include/person.hpp"
 #include <iostream>
+#include "../include/player.hpp"
 
 Player::Player(const std::string& name, int age)
   : Person(name, age) {

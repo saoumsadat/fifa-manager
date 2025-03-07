@@ -1,9 +1,8 @@
 #ifndef CLUB_TEAM_HPP
 #define CLUB_TEAM_HPP
 
+#include <iostream>
 #include "team.hpp"
-#include <vector>
-#include <string>
 
 class ClubTeam : public Team {
 private:

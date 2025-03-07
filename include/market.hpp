@@ -1,16 +1,19 @@
+#ifndef MARKET_HPP
+#define MARKET_HPP
+
 #include <iostream>
 #include <vector>
-#include "player.hpp"
-#include "club_team.hpp"
+#include "fifa.hpp"
 
 using namespace std;
 
-namespace market {
+namespace Market {
 
-void browse_players();
-void buy_player();
-void search_player(const string& player_name);
-void sell_player(ClubTeam& club, const string& player_name);
+  void list_players();
+  void search_player(const string& player_name);
+  void buy_player();
+  void sell_player(ClubTeam& club, const string& player_name);
 
 }
-  
+
+#endif

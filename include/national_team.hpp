@@ -1,6 +1,8 @@
-#include "team.hpp"
+#ifndef NATIONAL_TEAM_HPP
+#define NATIONAL_TEAM_HPP
+
 #include <iostream>
-#include "player.hpp"
+#include "team.hpp"
 
 class NationalTeam : public Team {
 private:
@@ -16,3 +18,5 @@ public:
   //overriding getclassname from display
   std::string GetClassName() const override;
 };
+
+#endif

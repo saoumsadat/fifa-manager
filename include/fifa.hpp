@@ -1,3 +1,6 @@
+#ifndef FIFA_HPP
+#define FIFA_HPP
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -12,13 +15,22 @@
 using namespace std;
 
 namespace Fifa {
+
+  Person* load_person(ifstream& file, const string& person_name);
+  Player load_player(const string& player_name);
+  Coach load_coach(const string& coach_name);
+  Team* load_team_data(ifstream& file, const string& team_name);
+  NationalTeam load_national_team_data(const string& national_team_name);
+  ClubTeam load_club_team_data(const string& club_team_name);
+  unique_ptr<Team> check_return_team_type(const string& team_name);
+
   template <typename T>
   T extractInfo(const string& line) {
     T info;
     istringstream iss(line);
     string label;
     iss >> label >> info;  // Extract label and value into the template variable
-  return info;
+    return info;
   }
 
   template <typename T>
@@ -70,13 +82,7 @@ namespace Fifa {
   
     return entity;
   }
- 
 
-  Person* load_person(ifstream& file, const string& person_name);
-  Player load_player(const string& player_name);
-  Coach load_coach(const string& coach_name);
-  Team* load_team_data(ifstream& file, const string& team_name);
-  NationalTeam load_national_team_data(const string& national_team_name);
-  ClubTeam load_club_team_data(const string& club_team_name);
-  unique_ptr<Team> check_return_team_type(const string& team_name);
 }
+
+#endif

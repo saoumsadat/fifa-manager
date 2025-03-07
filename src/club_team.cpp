@@ -1,7 +1,5 @@
 #include <iostream>
-#include <team.hpp>
 #include "../include/club_team.hpp"
-#include "player.hpp"
 
 ClubTeam::ClubTeam(std::string team_name) : Team(team_name) {}
 

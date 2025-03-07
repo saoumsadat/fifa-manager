@@ -1,7 +1,7 @@
 #include "../include/fifa.hpp"
 
 using namespace std;
-
+using namespace Fifa;
 
 
 Person* Fifa::load_person(ifstream& file, const string& person_name) {

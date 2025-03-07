@@ -6,6 +6,7 @@
 #include "player.hpp"
 #include "display.hpp"
 #include "coach.hpp"
+#include "fifa.hpp"
 
 class Team : public Display {
 protected:
@@ -27,6 +28,7 @@ public:
 
   //overriding from display
   std::string GetClassName() const override;
+
 };
 
 #endif

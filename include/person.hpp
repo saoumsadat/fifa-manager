@@ -2,6 +2,7 @@
 #define PERSON_HPP
 
 #include <iostream>
+#include "fifa.hpp"
 
 class Person {
 protected:
@@ -19,7 +20,6 @@ public:
   void set_info(std::string nationality);
 
   virtual void display_info();
-
 };
 
 #endif

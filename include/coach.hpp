@@ -18,7 +18,11 @@ public:
   void set_info(std::string team);
   void set_info(double tactics);
 
+  std::string get_team() const;
+  double get_tactics() const;
+
   void display_info() override;
+  
 };
 
 #endif

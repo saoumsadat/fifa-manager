@@ -6,7 +6,7 @@
 
 class NationalTeam : public Team {
 private:
-  int world_cup_won;
+  int world_cup;
   std::vector<Player> reserve;
 
 public:
@@ -15,8 +15,12 @@ public:
   void set_world_cup(int new_world_cup_count);
   void add_to_res(Player p);
 
+  int get_world_cup() const;
+  const std::vector<Player>& get_reserve() const; 
+
   //overriding getclassname from display
   std::string GetClassName() const override;
+
 };
 
 #endif

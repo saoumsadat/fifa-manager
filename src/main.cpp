@@ -102,10 +102,14 @@ void market_mode() {
 
     if (choice == 0) break;
     if (choice == 1) {
+      Market::list_players();
+    }
+    if (choice == 2) {
       string player_name;
-      cout << "Enter Player Name: ";
+      cout << "Enter Player Name" << endl;
       cin >> player_name;
-      
+
+      Market::search_player(player_name);
     }
   }
 }

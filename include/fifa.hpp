@@ -16,6 +16,11 @@ using namespace std;
 
 namespace Fifa {
 
+  void write_player(const Player& player);
+  void write_coach(const Coach& coach);
+  void write_national_team(const NationalTeam& team);
+  void write_club_team(const ClubTeam& team);
+
   Person* load_person(ifstream& file, const string& person_name);
   Player load_player(const string& player_name);
   Coach load_coach(const string& coach_name);

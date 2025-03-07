@@ -47,6 +47,25 @@ void Player::set_info(std::string title, double num) {
   }
 }
 
+std::string Player::get_type() const {
+  return this->type;
+}
+std::string Player::get_national_team() const {
+  return this->national_team;
+}
+std::string Player::get_club_team() const {
+  return this->club_team;
+}
+int Player::get_goals() const {
+  return this->goals;
+}
+double Player::get_atk() const {
+  return this->atk;
+}
+double Player::get_def() const {
+  return this->def;
+}
+
 void Player::display_info() {
   Person::display_info();  // Call base class method first
   std::cout << "Type: " << this->type << std::endl;
@@ -56,3 +75,4 @@ void Player::display_info() {
   std::cout << "Attacking Power: " << this->atk << std::endl;
   std::cout << "Defending Power: " << this->def << std::endl;
 }
+

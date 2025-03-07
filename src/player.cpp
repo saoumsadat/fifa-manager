@@ -4,7 +4,6 @@
 
 Player::Player(const std::string& name, int age)
   : Person(name, age) {
-    this->price = 0;
     this->goals = 0;
     this->type = "Unknown";
     this->national_team = "None";
@@ -30,9 +29,7 @@ void Player::set_info(std::string title, std::string info) {
 //price, goals
 void Player::set_info(std::string title, int num) {
   
-  if (title == "price") {
-    this->price = num;
-  } else if (title == "goals") {
+  if (title == "goals") {
     this->goals = num;
   } else {
     std::cout << "Unknown title" << std::endl;

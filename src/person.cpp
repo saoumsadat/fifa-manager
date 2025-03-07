@@ -4,19 +4,19 @@ Person::Person(std::string name, int age) : name(name), age(age) {
   this->salary = 50;
 }
 
-std::string Person::get_name() {
+std::string Person::get_name() const {
   return this->name;
 }
 
-std::string Person::get_nationality() {
+std::string Person::get_nationality() const {
   return this->nationality;
 }
 
-int Person::get_age() {
+int Person::get_age() const {
   return this->age;
 }
 
-int Person::get_salary() {
+int Person::get_salary() const {
   return this->salary;
 }
 

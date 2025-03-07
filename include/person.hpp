@@ -10,10 +10,10 @@ protected:
 public:
   Person(std::string name, int age);
 
-  std::string get_name();
-  std::string get_nationality();
-  int get_age();
-  int get_salary();
+  std::string get_name() const;
+  std::string get_nationality() const;
+  int get_age() const;
+  int get_salary() const;
   
   void set_info(int salary);
   void set_info(std::string nationality);

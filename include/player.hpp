@@ -5,7 +5,7 @@
 
 class Player : public Person {
 private:
-  int price, goals;
+  int goals;
   double atk, def;
   std::string national_team, club_team, type;
 
@@ -16,7 +16,7 @@ public:
   using Person::set_info;  // Bring back base class methods
 
   void set_info(std::string title, std::string info); //national_team, club_team, type
-  void set_info(std::string title, int num);  //price, goals
+  void set_info(std::string title, int num);  //goals
   void set_info(std::string title, double num);  //atk, def
 
   void display_info() override;

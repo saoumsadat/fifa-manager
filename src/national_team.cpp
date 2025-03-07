@@ -5,30 +5,14 @@
 
 NationalTeam::NationalTeam(std::string team_name) : Team(team_name) {}
 
+void NationalTeam::set_world_cup(int new_world_cup_count) {
+  this->world_cup_won = new_world_cup_count;
+}
+
 void NationalTeam::add_to_res(Player p) {
   this->reserve.push_back(p);
 }
 
-void NationalTeam::recruit(Player new_player) {
-
-}
-
-void NationalTeam::reserve_to_sub(std::string name) {
-
-}
-
-void NationalTeam::sub_to_squad(Player new_player) {
-
-}
-
-void NationalTeam::remove_from_reserve(std::string name) {
-
-}
-
-void NationalTeam::remove_from_squad(std::string name) {
-
-}
-
-void NationalTeam::remove_from_sub(std::string name) {
-
+std::string NationalTeam::GetClassName() const {
+  return "National";
 }

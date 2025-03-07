@@ -19,3 +19,18 @@ Nationality: Brazil
 Salary: 100
 Team: Brazil
 Tactics: 85
+
+Name: RMCoach
+Age: 42
+Nationality: Portugal
+Salary: 100
+Team: RealMadrid
+Tactics: 85
+
+Name: BarcaCoach
+Age: 42
+Nationality: Brazil
+Salary: 100
+Team: Barcelona
+Tactics: 85
+

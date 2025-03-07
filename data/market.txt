@@ -1,0 +1,38 @@
+Name: P1  
+Price: 58  
+
+Name: SubP1  
+Price: 42  
+
+Name: RP1  
+Price: 35  
+
+Name: RP2  
+Price: 47  
+
+Name: RP3  
+Price: 64  
+
+Name: RP4  
+Price: 39  
+
+Name: RP5  
+Price: 50  
+
+Name: A10  
+Price: 55  
+
+Name: A11  
+Price: 45  
+
+Name: RA1  
+Price: 33  
+
+Name: RA2  
+Price: 41  
+
+Name: RA3  
+Price: 60  
+
+Name: RB5  
+Price: 49  

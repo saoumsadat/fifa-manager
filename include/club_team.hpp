@@ -2,7 +2,7 @@
 #define CLUB_TEAM_HPP
 
 #include <iostream>
-#include "team.hpp"
+#include "../include/team.hpp"
 
 class ClubTeam : public Team {
 private:

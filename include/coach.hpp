@@ -1,7 +1,7 @@
 #ifndef COACH_HPP
 #define COACH_HPP
 
-#include "person.hpp"
+#include "../include/person.hpp"
 
 class Coach : public Person {
 private:

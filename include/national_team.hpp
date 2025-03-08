@@ -2,7 +2,7 @@
 #define NATIONAL_TEAM_HPP
 
 #include <iostream>
-#include "team.hpp"
+#include "../include/team.hpp"
 
 class NationalTeam : public Team {
 private:

@@ -7,19 +7,23 @@
 #include <vector>
 #include <filesystem>
 #include <memory>
-#include "national_team.hpp"
-#include "club_team.hpp"
-#include "player.hpp"
-#include "coach.hpp"
+#include "../include/national_team.hpp"
+#include "../include/club_team.hpp"
+#include "../include/player.hpp"
+#include "../include/coach.hpp"
 
 using namespace std;
 
 namespace Fifa {
-
   void write_player(const Player& player);
   void write_coach(const Coach& coach);
   void write_national_team(const NationalTeam& team);
   void write_club_team(const ClubTeam& team);
+  
+  Player create_player_obj();
+  Coach create_coach_obj();
+  NationalTeam create_national_team_obj();
+  ClubTeam create_club_team_obj();
 
   Person* load_person(ifstream& file, const string& person_name);
   Player load_player(const string& player_name);

@@ -2,7 +2,6 @@
 #define PERSON_HPP
 
 #include <iostream>
-#include "fifa.hpp"
 
 class Person {
 protected:

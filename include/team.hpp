@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <vector>
-#include "player.hpp"
-#include "display.hpp"
-#include "coach.hpp"
-#include "fifa.hpp"
+#include "../include/display.hpp"
+#include "../include/player.hpp"
+#include "../include/coach.hpp"
+
 
 class Team : public Display {
 protected:

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "../include/person.hpp"
 
 Person::Person(std::string name, int age) : name(name), age(age) {

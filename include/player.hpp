@@ -1,7 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include "person.hpp"
+#include "../include/person.hpp"
 
 class Player : public Person {
 private:

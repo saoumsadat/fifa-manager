@@ -1,5 +1,5 @@
-#include "../include/coach.hpp"
 #include <iostream>
+#include "../include/coach.hpp"
 
 Coach::Coach(const std::string& name, int age) : Person(name, age) {
   this->team = "None";

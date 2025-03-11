@@ -3,236 +3,51 @@
 
 using namespace std;
 
-Player Fifa::create_player_obj()
+Player Fifa::create_player_obj(const string& name, int age, const string& nationality, const string& type, double atk, double def)
 {
-  std::string name, nationality, club_team, type;
-  int age, salary, goals;
-  double atk, def;
-
-  std::cout << "Enter player name: ";
-  std::getline(std::cin, name);
-
-  std::cout << "Enter player age: ";
-  std::cin >> age;
-  std::cin.ignore(); // Clear the newline character from the buffer
-
-  std::cout << "Enter player salary: ";
-  std::cin >> salary;
-  std::cin.ignore();
-
-  std::cout << "Enter player nationality: ";
-  std::getline(std::cin, nationality);
-
-  std::cout << "Enter player club team: ";
-  std::getline(std::cin, club_team);
-
-  std::cout << "Enter player type (e.g., Attacker, Midfielder, Defender): ";
-  std::getline(std::cin, type);
-
-  std::cout << "Enter player goals: ";
-  std::cin >> goals;
-  std::cin.ignore();
-
-  std::cout << "Enter player attack rating (0.0 - 100.0): ";
-  std::cin >> atk;
-  std::cin.ignore();
-
-  std::cout << "Enter player defense rating (0.0 - 100.0): ";
-  std::cin >> def;
-  std::cin.ignore();
-
   // Create the Player object
   Player player(name, age);
-  player.set_info(salary);
   player.set_info(nationality);
-  player.set_info("club_team", club_team);
   player.set_info("type", type);
-  player.set_info("goals", goals);
   player.set_info("atk", atk);
   player.set_info("def", def);
 
   return player;
 }
 
-Coach Fifa::create_coach_obj()
+Coach Fifa::create_coach_obj(const string& name, int age, const string& nationality, const string& team, double tactics)
 {
-  std::string name, team;
-  int age;
-  double tactics;
-
-  std::cout << "Enter coach name: ";
-  std::getline(std::cin, name);
-
-  std::cout << "Enter coach age: ";
-  std::cin >> age;
-  std::cin.ignore();
-
-  std::cout << "Enter coach team: ";
-  std::getline(std::cin, team);
-
-  std::cout << "Enter coach tactics rating (0.0 - 100.0): ";
-  std::cin >> tactics;
-  std::cin.ignore();
 
   // Create the Coach object
   Coach coach(name, age);
+  coach.Person::set_info(nationality);  //explicitly mentioned as team is also a string
   coach.set_info(team);
   coach.set_info(tactics);
 
   return coach;
 }
 
-NationalTeam Fifa::create_national_team_obj()
+Team* Fifa::create_team_obj(const std::string& team_name, const std::string& team_type) 
 {
-  std::string team_name;
-  int world_cup_count;
+  Team* team = nullptr;
 
-  std::cout << "Enter national team name: ";
-  std::getline(std::cin, team_name);
-
-  std::cout << "Enter World Cup wins: ";
-  std::cin >> world_cup_count;
-  std::cin.ignore();
-
-  // Create the NationalTeam object
-  NationalTeam nationalTeam(team_name);
-  nationalTeam.set_world_cup(world_cup_count);
-
-  // Add 11 players to the squad
-  std::cout << "Adding 11 players to the squad..." << std::endl;
-  for (int i = 0; i < 11; ++i)
-  {
-    std::cout << "Player " << i + 1 << ":" << std::endl;
-    std::cout << "1. Add an existing player" << std::endl;
-    std::cout << "2. Add a new player" << std::endl;
-    int choice;
-    std::cin >> choice;
-    std::cin.ignore();
-
-    Player player;
-    bool player_added = false;
-
-    if (choice == 1)
-    {
-      // Add an existing player
-      std::string player_name;
-      std::cout << "Enter the player's name: ";
-      std::getline(std::cin, player_name);
-
-      // Load the player using Fifa::load_player
-      player = Fifa::load_player(player_name);
-      if (player.get_name().empty())
-      {
-        std::cout << "Player not found. Please try again." << std::endl;
-        i--; // Retry this iteration
-      }
-      else
-      {
-        player_added = true;
-      }
-    }
-    else if (choice == 2)
-    {
-      // Add a new player
-      std::cout << "Enter details for squad player " << i + 1 << ":" << std::endl;
-      player = create_player_obj();
-      player_added = true;
-    }
-    else
-    {
-      std::cout << "Invalid choice. Please try again." << std::endl;
-      i--; // Retry this iteration
-    }
-
-    // Add the player to the squad if they were successfully created
-    if (player_added)
-    {
-      nationalTeam.add_to_squad(player, i);
-    }
+  if (team_type == "national_team") {
+    team = new NationalTeam(team_name);
+  } else if (team_type == "club_team") {
+    team = new ClubTeam(team_name);
+  } else {
+    throw std::invalid_argument("Invalid team type");
   }
 
-  std::cout << "Squad has been made. Go to Market for more players." << std::endl;
+  // Set dummy coach
+  team->set_coach(Coach());
 
-  return nationalTeam;
-}
-
-ClubTeam Fifa::create_club_team_obj()
-{
-  std::string team_name;
-  int ucl_count, funds;
-
-  std::cout << "Enter club team name: ";
-  std::getline(std::cin, team_name);
-
-  std::cout << "Enter UEFA Champions League wins: ";
-  std::cin >> ucl_count;
-  std::cin.ignore();
-
-  std::cout << "Enter club funds (in euros): ";
-  std::cin >> funds;
-  std::cin.ignore();
-
-  // Create the ClubTeam object
-  ClubTeam clubTeam(team_name);
-  clubTeam.set_ucl(ucl_count);
-  clubTeam.set_funds(funds);
-
-  // Add 11 players to the squad
-  std::cout << "Adding 11 players to the squad..." << std::endl;
-  for (int i = 0; i < 11; ++i)
-  {
-    std::cout << "Player " << i + 1 << ":" << std::endl;
-    std::cout << "1. Add an existing player" << std::endl;
-    std::cout << "2. Add a new player" << std::endl;
-    int choice;
-    std::cin >> choice;
-    std::cin.ignore();
-
-    Player player;
-    bool player_added = false;
-
-    if (choice == 1)
-    {
-      // Add an existing player
-      std::string player_name;
-      std::cout << "Enter the player's name: ";
-      std::getline(std::cin, player_name);
-
-      // Load the player using Fifa::load_player
-      player = Fifa::load_player(player_name);
-      if (player.get_name().empty())
-      {
-        std::cout << "Player not found. Please try again." << std::endl;
-        i--; // Retry this iteration
-      }
-      else
-      {
-        player_added = true;
-      }
-    }
-    else if (choice == 2)
-    {
-      // Add a new player
-      std::cout << "Enter details for squad player " << i + 1 << ":" << std::endl;
-      player = create_player_obj();
-      player_added = true;
-    }
-    else
-    {
-      std::cout << "Invalid choice. Please try again." << std::endl;
-      i--; // Retry this iteration
-    }
-
-    // Add the player to the squad if they were successfully created
-    if (player_added)
-    {
-      clubTeam.add_to_squad(player, i);
-    }
+  // Add dummy squad players
+  for (int i = 0; i < 11; ++i) {
+    team->add_to_squad(Player(), i);
   }
 
-  std::cout << "Squad has been made. Go to Market for more players." << std::endl;
-
-  return clubTeam;
+  return team;
 }
 
 void Fifa::write_player(const Player &player)
@@ -240,7 +55,7 @@ void Fifa::write_player(const Player &player)
   std::ofstream outfile("../data/players.txt", std::ios::app);
   if (outfile.is_open())
   {
-    outfile << "Name: " << player.get_name() << "\n";
+    outfile << "\nName: " << player.get_name() << "\n";
     outfile << "Age: " << player.get_age() << "\n";
     outfile << "Nationality: " << player.get_nationality() << "\n";
     outfile << "Salary: " << player.get_salary() << "\n";
@@ -249,7 +64,7 @@ void Fifa::write_player(const Player &player)
     outfile << "ClubTeam: " << player.get_club_team() << "\n";
     outfile << "Goals: " << player.get_goals() << "\n";
     outfile << "Attack: " << player.get_atk() << "\n";
-    outfile << "Defense: " << player.get_def() << "\n\n";
+    outfile << "Defense: " << player.get_def() << "\n";
     outfile.close();
   }
   else
@@ -263,12 +78,12 @@ void Fifa::write_coach(const Coach &coach)
   std::ofstream outfile("../data/coaches.txt", std::ios::app);
   if (outfile.is_open())
   {
-    outfile << "Name: " << coach.get_name() << "\n";
+    outfile << "\nName: " << coach.get_name() << "\n";
     outfile << "Age: " << coach.get_age() << "\n";
     outfile << "Nationality: " << coach.get_nationality() << "\n";
     outfile << "Salary: " << coach.get_salary() << "\n";
     outfile << "Team: " << coach.get_team() << "\n";
-    outfile << "Tactics: " << coach.get_tactics() << "\n\n";
+    outfile << "Tactics: " << coach.get_tactics() << "\n";
     outfile.close();
   }
   else
@@ -282,7 +97,7 @@ void Fifa::write_national_team(const NationalTeam &team)
   std::ofstream outfile("../data/national_teams.txt", std::ios::app);
   if (outfile.is_open())
   {
-    outfile << "Name: " << team.get_name() << "\n";
+    outfile << "\nName: " << team.get_name() << "\n";
     outfile << "Coach: " << team.get_coach().get_name() << "\n";
     outfile << "Squad: ";
     for (int i = 0; i < 11; ++i)
@@ -306,7 +121,7 @@ void Fifa::write_national_team(const NationalTeam &team)
       if (i < team.get_reserve().size() - 1)
         outfile << ",";
     }
-    outfile << "\n\n";
+    outfile << "\n";
     outfile.close();
   }
   else
@@ -320,7 +135,7 @@ void Fifa::write_club_team(const ClubTeam &team)
   std::ofstream outfile("../data/club_teams.txt", std::ios::app);
   if (outfile.is_open())
   {
-    outfile << "Name: " << team.get_name() << "\n";
+    outfile << "\nName: " << team.get_name() << "\n";
     outfile << "Coach: " << team.get_coach().get_name() << "\n";
     outfile << "Squad: ";
     for (int i = 0; i < 11; ++i)
@@ -344,7 +159,7 @@ void Fifa::write_club_team(const ClubTeam &team)
       if (i < team.get_transfer_list().size() - 1)
         outfile << ",";
     }
-    outfile << "\nFunds: " << team.get_funds() << "\n\n";
+    outfile << "\nFunds: " << team.get_funds() << "\n";
     outfile.close();
   }
   else

@@ -20,10 +20,16 @@ namespace Fifa {
   void write_national_team(const NationalTeam& team);
   void write_club_team(const ClubTeam& team);
   
-  Player create_player_obj();
-  Coach create_coach_obj();
-  NationalTeam create_national_team_obj();
-  ClubTeam create_club_team_obj();
+  void edit_player(const Player& player);
+  void edit_coach(const Coach& coach);
+  void edit_national_team(const NationalTeam& team);
+  void edit_club_team(const ClubTeam& team);
+  
+  Player create_player_obj(const string& name, int age, const string& nationality, const string& type, double atk, double def);
+  Coach create_coach_obj(const string& name, int age, const string& nationality, const string& team, double tactics);
+  Team* create_team_obj(const std::string& team_name, const std::string& team_type);
+  // NationalTeam create_national_team_obj(const std::string& team_name);
+  // ClubTeam create_club_team_obj(const std::string& team_name);
 
   Person* load_person(ifstream& file, const string& person_name);
   Player load_player(const string& player_name);

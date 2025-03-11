@@ -1,7 +1,9 @@
 #include <iostream>
 #include "../include/national_team.hpp"
 
-NationalTeam::NationalTeam(std::string team_name) : Team(team_name) {}
+NationalTeam::NationalTeam(std::string team_name) : Team(team_name) {
+  this->world_cup = 0;
+}
 
 void NationalTeam::set_world_cup(int new_world_cup_count) {
   this->world_cup = new_world_cup_count;

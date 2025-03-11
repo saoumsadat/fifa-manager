@@ -34,3 +34,10 @@ Salary: 100
 Team: Barcelona
 Tactics: 85
 
+Name: ManCityCoach
+Age: 45
+Nationality: Argentina
+Salary: 50
+Team: ManCity
+Tactics: 83
+

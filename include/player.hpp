@@ -10,7 +10,7 @@ private:
   std::string national_team, club_team, type;
   
 public:
-  Player() : Person("", 0) {}  // Default constructor
+  Player() : Person("NoName", 0) {}  // Default constructor
   Player(const std::string& name, int age);
 
   using Person::set_info;  // Bring back base class methods

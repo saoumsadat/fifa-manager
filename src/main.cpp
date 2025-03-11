@@ -138,6 +138,72 @@ void market_mode()
   }
 }
 
+Player get_new_player_obj()
+{
+  std::string name, nationality, national_team, club_team, type;
+  int age, goals, salary;
+  double atk, def;
+
+  // Collecting player details
+  cout << "Enter player name: ";
+  cin >> name;
+
+  cout << "Enter player age: ";
+  cin >> age;
+
+  cout << "Enter player nationality: ";
+  cin >> nationality;
+
+  cout << "Enter player type (e.g., Forward, Midfielder): ";
+  cin >> type;
+
+  cout << "Enter attack rating (0.0 - 100.0): ";
+  cin >> atk;
+
+  cout << "Enter defense rating (0.0 - 100.0): ";
+  cin >> def;
+
+  Player new_player = Fifa::create_player_obj(name, age, nationality, type, atk, def);
+  return new_player;
+}
+
+Coach get_new_coach_obj()
+{
+  std::string name, team, nationality;
+  int age;
+  double tactics;
+
+  cout << "Enter coach name: ";
+  cin >> name;
+
+  cout << "Enter coach age: ";
+  cin >> age;
+
+  cout << "Enter coach nationality: ";
+  cin >> nationality;
+
+  cout << "Enter coach team: ";
+  cin >> team;
+
+  cout << "Enter coach tactics rating (0.0 - 100.0): ";
+  cin >> tactics;
+
+  Coach new_coach = Fifa::create_coach_obj(name, age, nationality, team, tactics);
+  return new_coach;
+}
+
+Team* get_new_team_obj(const std::string& team_type) {
+  std::string team_name;
+
+  // Prompt for team name
+  std::cout << "Enter " << team_type << " name: ";
+  std::cin >> team_name;
+
+  // Create the team object based on the team type
+  Team* team = Fifa::create_team_obj(team_name, team_type);
+  return team;
+}
+
 void register_mode()
 {
   int choice;
@@ -151,10 +217,65 @@ void register_mode()
     cout << "Enter choice: ";
     cin >> choice;
 
-    if (choice == 0) break;
-    if (choice == 1) {
-      Player new_player = Fifa::create_player_obj();
+    if (choice == 0)
+      break;
+    if (choice == 1)
+    {
+      Player new_player = get_new_player_obj();
       Fifa::write_player(new_player);
+    }
+    if (choice == 2)
+    {
+      Coach new_coach = get_new_coach_obj();
+      Fifa::write_coach(new_coach);
+    }
+    if (choice == 3)
+    {
+      Team* new_team = get_new_team_obj("national_team");
+      NationalTeam* new_national_team = dynamic_cast<NationalTeam*>(new_team);
+      cout << new_national_team->get_name() << endl;
+      Fifa::write_national_team(*new_national_team);
+    }
+    if (choice == 4)
+    {
+      Team* new_team = get_new_team_obj("club_team");
+      ClubTeam* new_club_team = dynamic_cast<ClubTeam*>(new_team);
+      cout << new_club_team->get_name() << endl;
+      Fifa::write_club_team(*new_club_team);
+    }
+  }
+}
+
+void edit_mode()
+{
+  int choice;
+  cout << "\n1. Edit a Player" << endl;
+  cout << "2. Edit a Coach" << endl;
+  cout << "3. Edit a NationalTeam" << endl;
+  cout << "4. Edit a ClubTeam" << endl;
+  cout << "0. Go Back" << endl;
+  cout << "Enter choice: ";
+  cin >> choice;
+
+  while (true)
+  {
+    if (choice == 0)
+      break;
+    if (choice == 1)
+    {
+     
+    }
+    if (choice == 2)
+    {
+  
+    }
+    if (choice == 3)
+    {
+  
+    }
+    if (choice == 4)
+    {
+  
     }
   }
 }
@@ -167,6 +288,7 @@ int main()
     cout << "\n1. Enter Coach Mode" << endl;
     cout << "2. Enter Market" << endl;
     cout << "3. Register" << endl;
+    cout << "4. Edit Info" << endl;
     cout << "0. Exit" << endl;
     cout << "Enter choice: ";
     cin >> option;
@@ -179,6 +301,8 @@ int main()
       market_mode();
     if (option == 3)
       register_mode();
+    if (option == 4)
+      edit_mode();
   }
   return 0;
 }

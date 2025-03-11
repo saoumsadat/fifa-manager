@@ -1,7 +1,9 @@
 #include <iostream>
 #include "../include/team.hpp"
 
-Team::Team(std::string name) : name(name) {}
+Team::Team(std::string name) : name(name) {
+  this->assigned_coach = Coach();
+}
 
 void Team::set_coach(Coach new_coach) {
   this->assigned_coach = new_coach;

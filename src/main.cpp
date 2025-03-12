@@ -119,6 +119,7 @@ void market_mode()
     cout << "3. Buy Player" << endl;
     cout << "4. Sell Player" << endl;
     cout << "0. Go Back" << endl;
+    cout << "Enter choice: ";
     cin >> choice;
 
     if (choice == 0)
@@ -133,7 +134,45 @@ void market_mode()
       cout << "Enter Player Name" << endl;
       cin >> player_name;
 
-      Market::search_player(player_name);
+      auto [found_player, price] = Market::search_player(player_name);
+      
+      if (price == -1)
+      {
+        cout << "Player not found" << endl;
+        continue;
+      }
+
+      cout << found_player.get_name() << " - " << price << endl;
+
+    }
+    if (choice == 3)
+    {
+      string club_team_name, player_name;
+      cout << "Enter ClubTeam name: ";
+      cin >> club_team_name;
+      cout << "Enter Player name: ";
+      cin >> player_name;
+
+      ClubTeam club_team = Fifa::load_club_team_data(club_team_name);
+      Player player = Fifa::load_player(player_name);
+
+      Market::buy_player(club_team, player);
+    }
+    if (choice == 4)
+    {
+      string club_team_name, player_name;
+      int price;
+      cout << "Enter ClubTeam name: ";
+      cin >> club_team_name;
+      cout << "Enter Player name: ";
+      cin >> player_name;
+      cout << "Enter Price: ";
+      cin >> price;
+
+      ClubTeam club_team = Fifa::load_club_team_data(club_team_name);
+      Player player = Fifa::load_player(player_name);
+
+      Market::sell_player(club_team, player, price);
     }
   }
 }

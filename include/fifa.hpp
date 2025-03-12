@@ -15,6 +15,9 @@
 using namespace std;
 
 namespace Fifa {
+  void remove_player_from_market(const std::string &player_name);
+  void add_player_to_market(const std::string &player_name, int price);
+
   void write_player(const Player &player, const std::string &file_to_write = "../data/players.txt");
   void write_coach(const Coach &coach, const std::string &file_to_write = "../data/coaches.txt");
   void write_national_team(const NationalTeam &team, const std::string &file_to_write = "../data/national_teams.txt");

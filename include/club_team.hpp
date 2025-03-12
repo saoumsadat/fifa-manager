@@ -18,6 +18,7 @@ public:
   void set_ucl(int new_ucl_count); 
   void add_to_transfer_list(Player p); 
   void set_funds(int new_funds);
+  bool remove_from_transfer_list(Player p);
 
   //from display
   std::string GetClassName() const override;

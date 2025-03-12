@@ -3,6 +3,65 @@
 
 using namespace std;
 
+void Fifa::remove_player_from_market(const std::string &player_name)
+{
+  std::ifstream infile("../data/market.txt");
+  std::ofstream tempfile("../data/temp_market.txt");
+
+  if (!infile.is_open() || !tempfile.is_open())
+  {
+    std::cerr << "Error opening market file!" << std::endl;
+    return;
+  }
+
+  std::string line;
+  bool skip = false;
+
+  while (std::getline(infile, line))
+  {
+    if (line.find("Name: ") == 0)
+    {
+      std::string name = Fifa::extractInfo<std::string>(line);
+      if (name == player_name)
+      {
+        skip = true; // Skip the player's data
+        continue;
+      }
+      else
+      {
+        skip = false;
+      }
+    }
+
+    if (!skip)
+    {
+      tempfile << line << "\n"; // Write the line to the temp file
+    }
+  }
+
+  infile.close();
+  tempfile.close();
+
+  // Replace the original file with the temp file
+  std::remove("../data/market.txt");
+  std::rename("../data/temp_market.txt", "../data/market.txt");
+}
+
+void Fifa::add_player_to_market(const std::string &player_name, int price)
+{
+  ofstream file("../data/market.txt", ios::app);
+  if (!file.is_open())
+  {
+    cerr << "Error opening market file to add player!" << endl;
+    return;
+  }
+
+  file << "\nName: " << player_name << endl;
+  file << "Price: " << price << endl;
+
+  file.close();
+}
+
 Player Fifa::create_player_obj(const string &name, int age, const string &nationality, const string &type, double atk, double def)
 {
   // Create the Player object
@@ -283,23 +342,23 @@ void Fifa::update_national_team(const NationalTeam &team)
       std::string name = Fifa::extractInfo<std::string>(line); // Use extractInfo
       if (name == team.get_name())
       {
-        skip = true;                                                  // Skip the next lines for this team
+        skip = true; // Skip the next lines for this team
       }
       else
       {
         skip = false;
       }
     }
-    
+
     if (!skip)
     {
       tempfile << line << "\n"; // Write the line to the temp file
     }
   }
-  
+
   infile.close();
   tempfile.close();
-  
+
   // Replace the original file with the temp file
   std::remove("../data/national_teams.txt");
   std::rename("../data/temp_national_teams.txt", "../data/national_teams.txt");
@@ -327,23 +386,23 @@ void Fifa::update_club_team(const ClubTeam &team)
       std::string name = Fifa::extractInfo<std::string>(line); // Use extractInfo
       if (name == team.get_name())
       {
-        skip = true;                                          // Skip the next lines for this team
+        skip = true; // Skip the next lines for this team
       }
       else
       {
         skip = false;
       }
     }
-    
+
     if (!skip)
     {
       tempfile << line << "\n"; // Write the line to the temp file
     }
   }
-  
+
   infile.close();
   tempfile.close();
-  
+
   // Replace the original file with the temp file
   std::remove("../data/club_teams.txt");
   std::rename("../data/temp_club_teams.txt", "../data/club_teams.txt");
@@ -426,7 +485,7 @@ Player Fifa::load_player(const string &player_name)
   // getting info
   if (getline(file, line))
   { // Extract "Type: ..."
-    type = extractInfo<int>(line);
+    type = extractInfo<string>(line);
   }
   if (getline(file, line))
   { // Extract "NationalTeam: ..."
@@ -569,14 +628,14 @@ Team *Fifa::load_team_data(ifstream &file, const string &team_name)
 
 NationalTeam Fifa::load_national_team_data(const string &national_team_name)
 {
-  
+
   ifstream file("../data/national_teams.txt");
   if (!file.is_open())
   {
     cerr << "Error opening national_teams file!" << endl;
     return NationalTeam("");
   }
-  
+
   NationalTeam national_team = load_team_base_data<NationalTeam>(file, national_team_name);
 
   // loading additional info
@@ -603,7 +662,7 @@ NationalTeam Fifa::load_national_team_data(const string &national_team_name)
   }
 
   file.close();
-  
+
   return national_team;
 }
 
@@ -649,7 +708,6 @@ ClubTeam Fifa::load_club_team_data(const string &club_team_name)
   }
 
   file.close();
-  cout << club_team.get_name() << "under load club team" << endl;
   return club_team;
 }
 

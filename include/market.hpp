@@ -10,9 +10,9 @@ using namespace std;
 namespace Market {
 
   void list_players();
-  void search_player(const string& player_name);
-  void buy_player();
-  void sell_player(ClubTeam& club, const string& player_name);
+  tuple<Player, int> search_player(const string &player_name);
+  void buy_player(ClubTeam& club, Player& player);
+  void sell_player(ClubTeam& club, Player& player, int price);
 
 }
 

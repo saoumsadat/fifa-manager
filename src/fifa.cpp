@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Player Fifa::create_player_obj(const string& name, int age, const string& nationality, const string& type, double atk, double def)
+Player Fifa::create_player_obj(const string &name, int age, const string &nationality, const string &type, double atk, double def)
 {
   // Create the Player object
   Player player(name, age);
@@ -15,27 +15,32 @@ Player Fifa::create_player_obj(const string& name, int age, const string& nation
   return player;
 }
 
-Coach Fifa::create_coach_obj(const string& name, int age, const string& nationality, const string& team, double tactics)
+Coach Fifa::create_coach_obj(const string &name, int age, const string &nationality, const string &team, double tactics)
 {
 
   // Create the Coach object
   Coach coach(name, age);
-  coach.Person::set_info(nationality);  //explicitly mentioned as team is also a string
+  coach.Person::set_info(nationality); // explicitly mentioned as team is also a string
   coach.set_info(team);
   coach.set_info(tactics);
 
   return coach;
 }
 
-Team* Fifa::create_team_obj(const std::string& team_name, const std::string& team_type) 
+Team *Fifa::create_team_obj(const std::string &team_name, const std::string &team_type)
 {
-  Team* team = nullptr;
+  Team *team = nullptr;
 
-  if (team_type == "national_team") {
+  if (team_type == "national_team")
+  {
     team = new NationalTeam(team_name);
-  } else if (team_type == "club_team") {
+  }
+  else if (team_type == "club_team")
+  {
     team = new ClubTeam(team_name);
-  } else {
+  }
+  else
+  {
     throw std::invalid_argument("Invalid team type");
   }
 
@@ -43,16 +48,17 @@ Team* Fifa::create_team_obj(const std::string& team_name, const std::string& tea
   team->set_coach(Coach());
 
   // Add dummy squad players
-  for (int i = 0; i < 11; ++i) {
+  for (int i = 0; i < 11; ++i)
+  {
     team->add_to_squad(Player(), i);
   }
 
   return team;
 }
 
-void Fifa::write_player(const Player &player)
+void Fifa::write_player(const Player &player, const std::string &file_to_write)
 {
-  std::ofstream outfile("../data/players.txt", std::ios::app);
+  std::ofstream outfile(file_to_write, std::ios::app);
   if (outfile.is_open())
   {
     outfile << "\nName: " << player.get_name() << "\n";
@@ -73,9 +79,9 @@ void Fifa::write_player(const Player &player)
   }
 }
 
-void Fifa::write_coach(const Coach &coach)
+void Fifa::write_coach(const Coach &coach, const std::string &file_to_write)
 {
-  std::ofstream outfile("../data/coaches.txt", std::ios::app);
+  std::ofstream outfile(file_to_write, std::ios::app);
   if (outfile.is_open())
   {
     outfile << "\nName: " << coach.get_name() << "\n";
@@ -92,9 +98,9 @@ void Fifa::write_coach(const Coach &coach)
   }
 }
 
-void Fifa::write_national_team(const NationalTeam &team)
+void Fifa::write_national_team(const NationalTeam &team, const std::string &file_to_write)
 {
-  std::ofstream outfile("../data/national_teams.txt", std::ios::app);
+  std::ofstream outfile(file_to_write, std::ios::app);
   if (outfile.is_open())
   {
     outfile << "\nName: " << team.get_name() << "\n";
@@ -130,9 +136,9 @@ void Fifa::write_national_team(const NationalTeam &team)
   }
 }
 
-void Fifa::write_club_team(const ClubTeam &team)
+void Fifa::write_club_team(const ClubTeam &team, const std::string &file_to_write)
 {
-  std::ofstream outfile("../data/club_teams.txt", std::ios::app);
+  std::ofstream outfile(file_to_write, std::ios::app);
   if (outfile.is_open())
   {
     outfile << "\nName: " << team.get_name() << "\n";
@@ -168,6 +174,182 @@ void Fifa::write_club_team(const ClubTeam &team)
   }
 }
 
+void Fifa::update_player(const Player &player)
+{
+  std::ifstream infile("../data/players.txt");
+  std::ofstream tempfile("../data/temp_players.txt");
+
+  if (!infile.is_open() || !tempfile.is_open())
+  {
+    std::cerr << "Error opening files!" << std::endl;
+    return;
+  }
+
+  std::string line;
+  bool skip = false;
+
+  while (std::getline(infile, line))
+  {
+    if (line.find("Name: ") == 0)
+    {
+      std::string name = Fifa::extractInfo<std::string>(line); // Use extractInfo
+      if (name == player.get_name())
+      {
+        skip = true; // Skip the next lines for this player
+      }
+      else
+      {
+        skip = false;
+      }
+    }
+
+    if (!skip)
+    {
+      tempfile << line << "\n"; // Write the line to the temp file
+    }
+  }
+
+  infile.close();
+  tempfile.close();
+
+  // Replace the original file with the temp file
+  std::remove("../data/players.txt");
+  std::rename("../data/temp_players.txt", "../data/players.txt");
+  Fifa::write_player(player); // Write the updated player
+}
+
+void Fifa::update_coach(const Coach &coach)
+{
+  std::ifstream infile("../data/coaches.txt");
+  std::ofstream tempfile("../data/temp_coaches.txt");
+
+  if (!infile.is_open() || !tempfile.is_open())
+  {
+    std::cerr << "Error opening files!" << std::endl;
+    return;
+  }
+
+  std::string line;
+  bool skip = false;
+
+  while (std::getline(infile, line))
+  {
+    if (line.find("Name: ") == 0)
+    {
+      std::string name = Fifa::extractInfo<std::string>(line); // Use extractInfo
+      if (name == coach.get_name())
+      {
+        skip = true; // Skip the next lines for this coach
+      }
+      else
+      {
+        skip = false;
+      }
+    }
+
+    if (!skip)
+    {
+      tempfile << line << "\n"; // Write the line to the temp file
+    }
+  }
+
+  infile.close();
+  tempfile.close();
+
+  // Replace the original file with the temp file
+  std::remove("../data/coaches.txt");
+  std::rename("../data/temp_coaches.txt", "../data/coaches.txt");
+  Fifa::write_coach(coach); // Write the updated coach
+}
+
+void Fifa::update_national_team(const NationalTeam &team)
+{
+  std::ifstream infile("../data/national_teams.txt");
+  std::ofstream tempfile("../data/temp_national_teams.txt");
+
+  if (!infile.is_open() || !tempfile.is_open())
+  {
+    std::cerr << "Error opening files!" << std::endl;
+    return;
+  }
+
+  std::string line;
+  bool skip = false;
+
+  while (std::getline(infile, line))
+  {
+    if (line.find("Name: ") == 0)
+    {
+      std::string name = Fifa::extractInfo<std::string>(line); // Use extractInfo
+      if (name == team.get_name())
+      {
+        skip = true;                                                  // Skip the next lines for this team
+      }
+      else
+      {
+        skip = false;
+      }
+    }
+    
+    if (!skip)
+    {
+      tempfile << line << "\n"; // Write the line to the temp file
+    }
+  }
+  
+  infile.close();
+  tempfile.close();
+  
+  // Replace the original file with the temp file
+  std::remove("../data/national_teams.txt");
+  std::rename("../data/temp_national_teams.txt", "../data/national_teams.txt");
+  Fifa::write_national_team(team); // Write the updated team
+}
+
+void Fifa::update_club_team(const ClubTeam &team)
+{
+  std::ifstream infile("../data/club_teams.txt");
+  std::ofstream tempfile("../data/temp_club_teams.txt");
+
+  if (!infile.is_open() || !tempfile.is_open())
+  {
+    std::cerr << "Error opening files!" << std::endl;
+    return;
+  }
+
+  std::string line;
+  bool skip = false;
+
+  while (std::getline(infile, line))
+  {
+    if (line.find("Name: ") == 0)
+    {
+      std::string name = Fifa::extractInfo<std::string>(line); // Use extractInfo
+      if (name == team.get_name())
+      {
+        skip = true;                                          // Skip the next lines for this team
+      }
+      else
+      {
+        skip = false;
+      }
+    }
+    
+    if (!skip)
+    {
+      tempfile << line << "\n"; // Write the line to the temp file
+    }
+  }
+  
+  infile.close();
+  tempfile.close();
+  
+  // Replace the original file with the temp file
+  std::remove("../data/club_teams.txt");
+  std::rename("../data/temp_club_teams.txt", "../data/club_teams.txt");
+  Fifa::write_club_team(team); // Write the updated team
+}
+
 Person *Fifa::load_person(ifstream &file, const string &person_name)
 {
 
@@ -175,7 +357,7 @@ Person *Fifa::load_person(ifstream &file, const string &person_name)
   string line;
   bool person_found = false;
 
-  string person_nation;
+  string person_nationality;
   int person_age, person_salary;
 
   while (getline(file, line))
@@ -206,7 +388,7 @@ Person *Fifa::load_person(ifstream &file, const string &person_name)
   }
   if (getline(file, line))
   { // Nationality: ..
-    person_nation = extractInfo<string>(line);
+    person_nationality = extractInfo<string>(line);
   }
   if (getline(file, line))
   { // Salary: ..
@@ -216,7 +398,7 @@ Person *Fifa::load_person(ifstream &file, const string &person_name)
   Person *person = new Person(person_name, person_age);
 
   // setting info
-  person->set_info(person_nation);
+  person->set_info(person_nationality);
   person->set_info(person_salary);
 
   return person;
@@ -387,14 +569,14 @@ Team *Fifa::load_team_data(ifstream &file, const string &team_name)
 
 NationalTeam Fifa::load_national_team_data(const string &national_team_name)
 {
-
+  
   ifstream file("../data/national_teams.txt");
   if (!file.is_open())
   {
     cerr << "Error opening national_teams file!" << endl;
     return NationalTeam("");
   }
-
+  
   NationalTeam national_team = load_team_base_data<NationalTeam>(file, national_team_name);
 
   // loading additional info
@@ -421,7 +603,7 @@ NationalTeam Fifa::load_national_team_data(const string &national_team_name)
   }
 
   file.close();
-
+  
   return national_team;
 }
 
@@ -467,7 +649,7 @@ ClubTeam Fifa::load_club_team_data(const string &club_team_name)
   }
 
   file.close();
-
+  cout << club_team.get_name() << "under load club team" << endl;
   return club_team;
 }
 

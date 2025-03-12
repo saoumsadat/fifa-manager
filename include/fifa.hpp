@@ -15,21 +15,19 @@
 using namespace std;
 
 namespace Fifa {
-  void write_player(const Player& player);
-  void write_coach(const Coach& coach);
-  void write_national_team(const NationalTeam& team);
-  void write_club_team(const ClubTeam& team);
+  void write_player(const Player &player, const std::string &file_to_write = "../data/players.txt");
+  void write_coach(const Coach &coach, const std::string &file_to_write = "../data/coaches.txt");
+  void write_national_team(const NationalTeam &team, const std::string &file_to_write = "../data/national_teams.txt");
+  void write_club_team(const ClubTeam &team, const std::string &file_to_write = "../data/club_teams.txt");
   
-  void edit_player(const Player& player);
-  void edit_coach(const Coach& coach);
-  void edit_national_team(const NationalTeam& team);
-  void edit_club_team(const ClubTeam& team);
+  void update_player(const Player& player);
+  void update_coach(const Coach& coach);
+  void update_national_team(const NationalTeam& team);
+  void update_club_team(const ClubTeam& team);
   
   Player create_player_obj(const string& name, int age, const string& nationality, const string& type, double atk, double def);
   Coach create_coach_obj(const string& name, int age, const string& nationality, const string& team, double tactics);
   Team* create_team_obj(const std::string& team_name, const std::string& team_type);
-  // NationalTeam create_national_team_obj(const std::string& team_name);
-  // ClubTeam create_club_team_obj(const std::string& team_name);
 
   Person* load_person(ifstream& file, const string& person_name);
   Player load_player(const string& player_name);
@@ -52,25 +50,26 @@ namespace Fifa {
   T load_entity(ifstream& file, const string& name) {
 
     Person* person = load_person(file, name);
-
+    
     if (!person) {
       cout << name << " not found" << endl;
       return T("", 0);
     }
 
     T entity(person->get_name(), person->get_age());
-    entity.set_info(person->get_nationality()); // Using base class getters
+    entity.Person::set_info(person->get_nationality()); // for coach, both team and nationality are string so explicitly mentioning
     entity.set_info(person->get_salary());
     delete person;
-
+    
     return entity;
   }
 
   template <typename T>
   T load_team_base_data(ifstream& file, const string& team_name) {
+    
     Team* team = load_team_data(file, team_name);
-  
-    T entity("");
+    
+    T entity(team->get_name());
   
     if (team) {
       // Set the coach
@@ -94,7 +93,7 @@ namespace Fifa {
       cout << team_name << " not found" << endl;
       return T("");
     }
-  
+    
     return entity;
   }
 

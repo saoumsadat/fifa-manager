@@ -192,7 +192,8 @@ Coach get_new_coach_obj()
   return new_coach;
 }
 
-Team* get_new_team_obj(const std::string& team_type) {
+Team *get_new_team_obj(const std::string &team_type)
+{
   std::string team_name;
 
   // Prompt for team name
@@ -200,7 +201,7 @@ Team* get_new_team_obj(const std::string& team_type) {
   std::cin >> team_name;
 
   // Create the team object based on the team type
-  Team* team = Fifa::create_team_obj(team_name, team_type);
+  Team *team = Fifa::create_team_obj(team_name, team_type);
   return team;
 }
 
@@ -231,17 +232,336 @@ void register_mode()
     }
     if (choice == 3)
     {
-      Team* new_team = get_new_team_obj("national_team");
-      NationalTeam* new_national_team = dynamic_cast<NationalTeam*>(new_team);
+      Team *new_team = get_new_team_obj("national_team");
+      NationalTeam *new_national_team = dynamic_cast<NationalTeam *>(new_team);
       cout << new_national_team->get_name() << endl;
       Fifa::write_national_team(*new_national_team);
     }
     if (choice == 4)
     {
-      Team* new_team = get_new_team_obj("club_team");
-      ClubTeam* new_club_team = dynamic_cast<ClubTeam*>(new_team);
+      Team *new_team = get_new_team_obj("club_team");
+      ClubTeam *new_club_team = dynamic_cast<ClubTeam *>(new_team);
       cout << new_club_team->get_name() << endl;
       Fifa::write_club_team(*new_club_team);
+    }
+  }
+}
+
+void edit_player(const std::string &player_name)
+{
+  // Load the player object (assuming Fifa::load_player exists)
+  Player player = Fifa::load_player(player_name);
+
+  if (player.get_name().empty())
+  {
+    std::cerr << "Player not found!" << std::endl;
+    return;
+  }
+
+  while (true)
+  {
+    std::cout << "\nEditing Player: " << player_name << std::endl;
+    std::cout << "1. Edit Salary" << std::endl;
+    std::cout << "2. Edit Type" << std::endl;
+    std::cout << "3. Edit Goals" << std::endl;
+    std::cout << "4. Edit Attack Rating" << std::endl;
+    std::cout << "5. Edit Defense Rating" << std::endl;
+    std::cout << "0. Save and Exit" << std::endl;
+    std::cout << "-1. Exit without saving" << std::endl;
+    std::cout << "Enter choice: ";
+    int choice;
+    std::cin >> choice;
+
+    if (choice == -1)
+    {
+      break;
+    }
+    
+    if (choice == 0)
+    {
+      // Save and exit
+      Fifa::update_player(player);
+      std::cout << "Player updated successfully!" << std::endl;
+      break;
+    }
+
+    switch (choice)
+    {
+    case 1:
+    {
+      int salary;
+      std::cout << "Enter new salary: ";
+      std::cin >> salary;
+      player.set_info(salary);
+      break;
+    }
+    case 2:
+    {
+      std::string type;
+      std::cout << "Enter new type: ";
+      std::cin >> type;
+      player.set_info("type", type);
+      break;
+    }
+    case 3:
+    {
+      int goals;
+      std::cout << "Enter new goals: ";
+      std::cin >> goals;
+      player.set_info("goals", goals);
+      break;
+    }
+    case 4:
+    {
+      double atk;
+      std::cout << "Enter new attack rating: ";
+      std::cin >> atk;
+      player.set_info("atk", atk);
+      break;
+    }
+    case 5:
+    {
+      double def;
+      std::cout << "Enter new defense rating: ";
+      std::cin >> def;
+      player.set_info("def", def);
+      break;
+    }
+    default:
+      std::cout << "Invalid choice. Please try again." << std::endl;
+    }
+  }
+}
+
+void edit_coach(const std::string &coach_name)
+{
+  // Load the coach object (assuming Fifa::load_coach exists)
+  Coach coach = Fifa::load_coach(coach_name);
+
+  if (coach.get_name().empty())
+  {
+    std::cerr << "Coach not found!" << std::endl;
+    return;
+  }
+
+  while (true)
+  {
+    std::cout << "\nEditing Coach: " << coach_name << std::endl;
+    std::cout << "1. Edit Salary" << std::endl;
+    std::cout << "2. Edit Team" << std::endl;
+    std::cout << "3. Edit Tactics Rating" << std::endl;
+    std::cout << "0. Save and Exit" << std::endl;
+    std::cout << "-1. Exit without saving" << std::endl;
+    std::cout << "Enter choice: ";
+    int choice;
+    std::cin >> choice;
+
+    if (choice == -1)
+    {
+      break;
+    }
+    
+    if (choice == 0)
+    {
+      // Save and exit
+      Fifa::update_coach(coach);
+      std::cout << "Coach updated successfully!" << std::endl;
+      break;
+    }
+
+    switch (choice)
+    {
+    case 1:
+    {
+      int salary;
+      std::cout << "Enter new salary: ";
+      std::cin >> salary;
+      coach.set_info(salary);
+      break;
+    }
+    case 2:
+    {
+      std::string team;
+      std::cout << "Enter new team: ";
+      std::cin >> team;
+      coach.set_info(team);
+      break;
+    }
+    case 3:
+    {
+      double tactics;
+      std::cout << "Enter new tactics rating: ";
+      std::cin >> tactics;
+      coach.set_info(tactics);
+      break;
+    }
+    default:
+      std::cout << "Invalid choice. Please try again." << std::endl;
+    }
+  }
+}
+
+void edit_national_team(const std::string &national_team_name)
+{
+  // Load the national team object (assuming Fifa::load_national_team exists)
+  NationalTeam national_team = Fifa::load_national_team_data(national_team_name);
+
+  if (national_team.get_name().empty())
+  {
+    std::cerr << "National Team not found!" << std::endl;
+    return;
+  }
+
+  while (true)
+  {
+    std::cout << "\nEditing National Team: " << national_team_name << std::endl;
+    std::cout << "1. Edit Coach" << std::endl;
+    std::cout << "2. Edit World Cup Count" << std::endl;
+    std::cout << "0. Save and Exit" << std::endl;
+    std::cout << "-1. Exit without saving" << std::endl;
+    std::cout << "Enter choice: ";
+    int choice;
+    std::cin >> choice;
+
+    if (choice == -1)
+    {
+      break;
+    }
+
+    if (choice == 0)
+    {
+      // Save and exit
+      Fifa::update_national_team(national_team);
+      std::cout << "National Team updated successfully!" << std::endl;
+      break;
+    }
+
+    switch (choice)
+    {
+    case 1:
+    {
+      std::string coach_name;
+      std::cout << "Enter new coach name: ";
+      std::cin >> coach_name;
+      Coach new_coach = Fifa::load_coach(coach_name);
+      if (new_coach.get_team() != "None")
+      {
+        cout << "Failed. Coach is already assigned to a different team" << endl;
+        continue;
+      }
+      
+      if (new_coach.get_name().empty())
+      {
+        std::cerr << "Coach not found!" << std::endl;
+      }
+      else
+      {
+        // Update the coach's team status
+        new_coach.set_info(national_team_name); // Set the coach's team to the national team
+        Fifa::update_coach(new_coach);          // Save the updated coach
+
+        // Update the national team's coach
+        national_team.set_coach(new_coach);
+      }
+      break;
+    }
+    case 2:
+    {
+      int world_cup;
+      std::cout << "Enter new World Cup count: ";
+      std::cin >> world_cup;
+      national_team.set_world_cup(world_cup);
+      break;
+    }
+    default:
+      std::cout << "Invalid choice. Please try again." << std::endl;
+    }
+  }
+}
+
+void edit_club_team(const std::string &club_team_name)
+{
+  // Load the club team object (assuming Fifa::load_club_team exists)
+  ClubTeam club_team = Fifa::load_club_team_data(club_team_name);
+
+  if (club_team.get_name().empty())
+  {
+    std::cerr << "Club Team not found!" << std::endl;
+    return;
+  }
+
+  while (true)
+  {
+    std::cout << "\nEditing Club Team: " << club_team_name << std::endl;
+    std::cout << "1. Edit Coach" << std::endl;
+    std::cout << "2. Edit UCL Count" << std::endl;
+    std::cout << "3. Edit Funds" << std::endl;
+    std::cout << "0. Save and Exit" << std::endl;
+    std::cout << "-1. Exit without saving" << std::endl;
+    std::cout << "Enter choice: ";
+    int choice;
+    std::cin >> choice;
+
+    if (choice == -1)
+    {
+      break;
+    }
+
+    if (choice == 0)
+    {
+      // Save and exit
+      Fifa::update_club_team(club_team);
+      std::cout << "Club Team updated successfully!" << std::endl;
+      break;
+    }
+
+    switch (choice)
+    {
+    case 1:
+    {
+      std::string coach_name;
+      std::cout << "Enter new coach name: ";
+      std::cin >> coach_name;
+      Coach new_coach = Fifa::load_coach(coach_name);
+      if (new_coach.get_team() != "None")
+      {
+        cout << "Failed. Coach is already assigned to a different team" << endl;
+        continue;
+      }
+
+      if (new_coach.get_name().empty())
+      {
+        std::cerr << "Coach not found!" << std::endl;
+      }
+      else
+      {
+        // Update the coach's team status
+        new_coach.set_info(club_team_name); // Set the coach's team to the club team
+        Fifa::update_coach(new_coach);      // Save the updated coach
+
+        // Update the club team's coach
+        club_team.set_coach(new_coach);
+      }
+      break;
+    }
+    case 2:
+    {
+      int ucl;
+      std::cout << "Enter new UCL count: ";
+      std::cin >> ucl;
+      club_team.set_ucl(ucl);
+      break;
+    }
+    case 3:
+    {
+      int funds;
+      std::cout << "Enter new funds: ";
+      std::cin >> funds;
+      club_team.set_funds(funds);
+      break;
+    }
+    default:
+      std::cout << "Invalid choice. Please try again." << std::endl;
     }
   }
 }
@@ -249,33 +569,44 @@ void register_mode()
 void edit_mode()
 {
   int choice;
-  cout << "\n1. Edit a Player" << endl;
-  cout << "2. Edit a Coach" << endl;
-  cout << "3. Edit a NationalTeam" << endl;
-  cout << "4. Edit a ClubTeam" << endl;
-  cout << "0. Go Back" << endl;
-  cout << "Enter choice: ";
-  cin >> choice;
-
   while (true)
   {
+    cout << "\n1. Edit a Player" << endl;
+    cout << "2. Edit a Coach" << endl;
+    cout << "3. Edit a NationalTeam" << endl;
+    cout << "4. Edit a ClubTeam" << endl;
+    cout << "0. Go Back" << endl;
+    cout << "Enter choice: ";
+    cin >> choice;
     if (choice == 0)
       break;
     if (choice == 1)
     {
-     
+      string player_to_edit_name;
+      cout << "Enter Player Name: ";
+      cin >> player_to_edit_name;
+      edit_player(player_to_edit_name);
     }
     if (choice == 2)
     {
-  
+      string coach_to_edit_name;
+      cout << "Enter Coach Name: ";
+      cin >> coach_to_edit_name;
+      edit_coach(coach_to_edit_name);
     }
     if (choice == 3)
     {
-  
+      string national_team_to_edit_name;
+      cout << "Enter NationalTeam Name: ";
+      cin >> national_team_to_edit_name;
+      edit_national_team(national_team_to_edit_name);
     }
     if (choice == 4)
     {
-  
+      string club_team_to_edit_name;
+      cout << "Enter ClubTeam Name: ";
+      cin >> club_team_to_edit_name;
+      edit_club_team(club_team_to_edit_name);
     }
   }
 }

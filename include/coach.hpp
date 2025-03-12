@@ -13,7 +13,8 @@ public:
   Coach() : Person("NotAssigned", 0) {}  // Default constructor
   Coach(const std::string& name, int age);
 
-  //no need to bring back parents set_info as both have 1 parameter
+  // Bring the set_info(int) method from the Person class into scope
+  using Person::set_info;
 
   void set_info(std::string team);
   void set_info(double tactics);

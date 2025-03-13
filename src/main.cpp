@@ -75,7 +75,8 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
     cout << "3. Swap Players (squad <-> sub)" << endl;
     cout << "4. Add Player to Transfer List" << endl;
     cout << "5. Remove Player from Transfer List" << endl;
-    cout << "0. Go back" << endl;
+    cout << "0. Save and exit" << endl;
+    cout << "-1. Go back" << endl;
     cout << "\nEnter choice: ";
     cin >> choice;
 
@@ -103,15 +104,26 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
     else if (choice == 4)
     {
       string player_name;
+      cout << "Enter Player Name: ";
+      cin >> player_name;
       Player player = Fifa::load_player(player_name);
       club_team->add_to_transfer_list(player);
     }
     else if (choice == 5)
     {
+      string player_name;
+      cout << "Enter Player Name: ";
+      cin >> player_name;
+      Player player = Fifa::load_player(player_name);
+      club_team->remove_from_transfer_list(player);
+    }
+    else if (choice == -1)
+    {
+      break;
     }
     else if (choice == 0)
     {
-      break;
+      Fifa::update_club_team(*club_team);
     }
     else
     {

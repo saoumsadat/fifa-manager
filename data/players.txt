@@ -690,3 +690,16 @@ ClubTeam: None
 Goals: 139
 Attack: 41.4
 Defense: 93.5
+
+
+
+Name: F1
+Age: 55
+Nationality: France
+Salary: 50
+Type: Attacker
+NationalTeam: France
+ClubTeam: None
+Goals: 0
+Attack: 84
+Defense: 35.5

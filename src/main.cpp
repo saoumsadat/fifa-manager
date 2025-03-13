@@ -11,6 +11,11 @@ using namespace std;
 using namespace Fifa;
 using namespace Market;
 
+void display_person_info(Person *p)
+{
+  p->display_info();
+}
+
 void national_coach_mode(unique_ptr<Team> &team_ptr)
 {
 
@@ -22,10 +27,12 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
   {
     cout << "\n1. National Coach Details" << endl;
     cout << "2. Display Players" << endl;
-    cout << "3. Swap Players (squad <-> sub)" << endl;
-    cout << "4. Check Reserves" << endl;
-    cout << "5. Recruit Players from Reserves" << endl;
-    cout << "6. Fetch Players with same nationality" << endl;
+    cout << "3. Check Player Details" << endl;
+    cout << "4. Swap Players (squad <-> sub)" << endl;
+    cout << "5. Check Reserves" << endl;
+    cout << "6. Recruit Players through selection process" << endl;
+    cout << "7. Recruit Players without selection process" << endl;
+    cout << "8. Fetch Players with same nationality" << endl;
     cout << "0. Save and Exit" << endl;
     cout << "-1. Go Back" << endl;
     cout << "\nEnter choice: ";
@@ -33,17 +40,39 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
 
     if (choice == 1)
     {
-      national_team->get_coach().display_info();
+      // Get the coach object and pass its address to display_person_info
+      Coach coach = national_team->get_coach(); // first storing in a variable to get permanent address(rvalue)
+      display_person_info(&coach);
     }
     else if (choice == 2)
     {
       national_team->display_players();
     }
+    else if (choice == 3)
+    {
+      string player_name;
+      cout << "Enter Player Name: ";
+      cin >> player_name;
+
+      Player player = Fifa::load_player(player_name);
+
+      bool player_exists = national_team->check_player_exist(player);
+
+      // Pass the address of the Player object to display_person_info
+      if (player_exists)
+      {
+        display_person_info(&player);
+      }
+      else
+      {
+        cout << "Player not found" << endl;
+      }
+    }
     else if (choice == -1)
     {
       break;
     }
-    else if (choice == 3)
+    else if (choice == 4)
     {
       string squad_player_name, sub_player_name;
       cout << "Enter Squad Player to swap: ";
@@ -56,11 +85,11 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
 
       national_team->swap_player(squad_player, sub_player);
     }
-    else if (choice == 4)
+    else if (choice == 5)
     {
       national_team->display_reserves();
     }
-    else if (choice == 5)
+    else if (choice == 6)
     {
       if (recruited_player.get_name() != "NoName")
       {
@@ -72,16 +101,30 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
       cin >> player_to_recruit_name;
 
       Player player_to_recruit = Fifa::load_player(player_to_recruit_name);
-      std::tie(recruited_player, replaced_player) = national_team->recruit(player_to_recruit);
+      std::tie(recruited_player, replaced_player) = national_team->selection_process(player_to_recruit);
     }
-    else if (choice == 6)
+    else if (choice == 7)
     {
+      string player_to_recruit_name;
+      cout << "Enter Player name to recruit: ";
+      cin >> player_to_recruit_name;
+
+      Player player_to_recruit = Fifa::load_player(player_to_recruit_name);
+      recruited_player = national_team->add_without_selection(player_to_recruit);
+    }
+    else if (choice == 8)
+    {
+      national_team->fetch_players();
     }
     else if (choice == 0)
     {
       if (recruited_player.get_name() != "NoName")
       {
         Fifa::update_player(recruited_player);
+      }
+
+      if (replaced_player.get_name() != "NoName")
+      {
         Fifa::update_player(replaced_player);
       }
 
@@ -106,10 +149,11 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
   {
     cout << "\n1. Club Coach Details" << endl;
     cout << "2. Display Players" << endl;
-    cout << "3. Swap Players (squad <-> sub)" << endl;
-    cout << "4. Check Transfer List" << endl;
-    cout << "5. Add Player to Transfer List" << endl;
-    cout << "6. Remove Player from Transfer List" << endl;
+    cout << "3. Check Player Details" << endl;
+    cout << "4. Swap Players (squad <-> sub)" << endl;
+    cout << "5. Check Transfer List" << endl;
+    cout << "6. Add Player to Transfer List" << endl;
+    cout << "7. Remove Player from Transfer List" << endl;
     cout << "0. Save and exit" << endl;
     cout << "-1. Go back" << endl;
     cout << "\nEnter choice: ";
@@ -117,13 +161,34 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
 
     if (choice == 1)
     {
-      club_team->get_coach().display_info();
+      // Get the coach object and pass its address to display_person_info
+      Coach coach = club_team->get_coach(); // first storing in a variable to get permanent address(rvalue)
+      display_person_info(&coach);
     }
     else if (choice == 2)
     {
       club_team->display_players();
     }
     else if (choice == 3)
+    {
+      string player_name;
+      cout << "Enter Player Name: ";
+      cin >> player_name;
+
+      Player player = Fifa::load_player(player_name);
+      bool player_exists = club_team->check_player_exist(player);
+
+      // Pass the address of the Player object to display_person_info
+      if (player_exists)
+      {
+        display_person_info(&player);
+      }
+      else
+      {
+        cout << "Player not found" << endl;
+      }
+    }
+    else if (choice == 4)
     {
       string squad_player_name, sub_player_name;
       cout << "Enter Squad Player to swap: ";
@@ -136,11 +201,11 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
 
       club_team->swap_player(squad_player, sub_player);
     }
-    else if (choice == 4)
+    else if (choice == 5)
     {
       club_team->display_transfer_list();
     }
-    else if (choice == 5)
+    else if (choice == 6)
     {
       string player_name;
       cout << "Enter Player Name: ";
@@ -148,7 +213,7 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
       Player player = Fifa::load_player(player_name);
       club_team->add_to_transfer_list(player);
     }
-    else if (choice == 6)
+    else if (choice == 7)
     {
       string player_name;
       cout << "Enter Player Name: ";
@@ -291,7 +356,7 @@ Player get_new_player_obj()
 
 Coach get_new_coach_obj()
 {
-  std::string name, team, nationality;
+  std::string name, nationality;
   int age;
   double tactics;
 
@@ -304,13 +369,10 @@ Coach get_new_coach_obj()
   cout << "Enter coach nationality: ";
   cin >> nationality;
 
-  cout << "Enter coach team: ";
-  cin >> team;
-
   cout << "Enter coach tactics rating (0.0 - 100.0): ";
   cin >> tactics;
 
-  Coach new_coach = Fifa::create_coach_obj(name, age, nationality, team, tactics);
+  Coach new_coach = Fifa::create_coach_obj(name, age, nationality, tactics);
   return new_coach;
 }
 
@@ -470,8 +532,7 @@ void edit_coach(const std::string &coach_name)
   {
     std::cout << "\nEditing Coach: " << coach_name << std::endl;
     std::cout << "1. Edit Salary" << std::endl;
-    std::cout << "2. Edit Team" << std::endl;
-    std::cout << "3. Edit Tactics Rating" << std::endl;
+    std::cout << "2. Edit Tactics Rating" << std::endl;
     std::cout << "0. Save and Exit" << std::endl;
     std::cout << "-1. Exit without saving" << std::endl;
     std::cout << "Enter choice: ";
@@ -503,14 +564,6 @@ void edit_coach(const std::string &coach_name)
     }
     case 2:
     {
-      std::string team;
-      std::cout << "Enter new team: ";
-      std::cin >> team;
-      coach.set_info(team);
-      break;
-    }
-    case 3:
-    {
       double tactics;
       std::cout << "Enter new tactics rating: ";
       std::cin >> tactics;
@@ -534,6 +587,9 @@ void edit_national_team(const std::string &national_team_name)
     return;
   }
 
+  // Declare a coach object (default constructor)
+  Coach new_coach; // Default constructor sets name to "NotAssigned"
+
   while (true)
   {
     std::cout << "\nEditing National Team: " << national_team_name << std::endl;
@@ -553,6 +609,14 @@ void edit_national_team(const std::string &national_team_name)
     if (choice == 0)
     {
       // Save and exit
+      if (new_coach.get_name() != "NotAssigned")
+      {
+        // Update the coach's team status
+        new_coach.set_info(national_team_name); // Set the coach's team to the national team
+        Fifa::update_coach(new_coach);          // Save the updated coach
+      }
+
+      // Update the national team
       Fifa::update_national_team(national_team);
       std::cout << "National Team updated successfully!" << std::endl;
       break;
@@ -565,23 +629,20 @@ void edit_national_team(const std::string &national_team_name)
       std::string coach_name;
       std::cout << "Enter new coach name: ";
       std::cin >> coach_name;
-      Coach new_coach = Fifa::load_coach(coach_name);
+      new_coach = Fifa::load_coach(coach_name); // Load the new coach
+
       if (new_coach.get_team() != "None")
       {
-        cout << "Failed. Coach is already assigned to a different team" << endl;
+        std::cout << "Failed. Coach is already assigned to a different team" << std::endl;
         continue;
       }
 
-      if (new_coach.get_name().empty())
+      if (new_coach.get_name() == "NotAssigned")
       {
         std::cerr << "Coach not found!" << std::endl;
       }
       else
       {
-        // Update the coach's team status
-        new_coach.set_info(national_team_name); // Set the coach's team to the national team
-        Fifa::update_coach(new_coach);          // Save the updated coach
-
         // Update the national team's coach
         national_team.set_coach(new_coach);
       }

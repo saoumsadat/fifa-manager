@@ -26,9 +26,6 @@ public:
   // Constructor
   ClubTeam(std::string team_name);
 
-  // check
-  bool check_player_exist(const Player &player) const;
-
   // Setters
   void set_ucl(int new_ucl_count);
   void add_to_transfer_list(Player p);

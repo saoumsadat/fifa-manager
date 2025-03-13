@@ -80,29 +80,6 @@ ClubTeam::ClubTeam(std::string team_name) : Team(team_name) {
   this->funds = 0;
 }
 
-bool ClubTeam::check_player_exist(const Player &player) const
-{
-  // Check squad
-  for (const Player &squadPlayer : squad)
-  {
-    if (squadPlayer.get_name() == player.get_name())
-    {
-      return true; // Player found in squad
-    }
-  }
-
-  // Check substitutes
-  for (const Player &subPlayer : sub)
-  {
-    if (subPlayer.get_name() == player.get_name())
-    {
-      return true; // Player found in substitutes
-    }
-  }
-
-  return false; // Player not found
-}
-
 void ClubTeam::set_ucl(int new_ucl_count)
 {
   this->ucl = new_ucl_count;

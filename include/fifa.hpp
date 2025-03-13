@@ -35,7 +35,7 @@ namespace Fifa {
   void update_club_team(const ClubTeam& team);
   
   Player create_player_obj(const string& name, int age, const string& nationality, const string& type, double atk, double def);
-  Coach create_coach_obj(const string& name, int age, const string& nationality, const string& team, double tactics);
+  Coach create_coach_obj(const string& name, int age, const string& nationality, double tactics);
   Team* create_team_obj(const std::string& team_name, const std::string& team_type);
 
   Person* load_person(ifstream& file, const string& person_name);

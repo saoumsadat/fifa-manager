@@ -74,13 +74,12 @@ Player Fifa::create_player_obj(const string &name, int age, const string &nation
   return player;
 }
 
-Coach Fifa::create_coach_obj(const string &name, int age, const string &nationality, const string &team, double tactics)
+Coach Fifa::create_coach_obj(const string &name, int age, const string &nationality, double tactics)
 {
 
   // Create the Coach object
   Coach coach(name, age);
   coach.Person::set_info(nationality); // explicitly mentioned as team is also a string
-  coach.set_info(team);
   coach.set_info(tactics);
 
   return coach;
@@ -526,7 +525,7 @@ Coach Fifa::load_coach(const string &coach_name)
   if (!file.is_open())
   {
     cerr << "Error opening coaches file!" << endl;
-    return Coach("", 0);
+    return Coach("NotAssigned", 0);
   }
 
   Coach coach = load_entity<Coach>(file, coach_name);

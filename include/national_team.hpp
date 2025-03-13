@@ -38,8 +38,11 @@ public:
 
   void display_reserves() const;
 
+  void fetch_players();
+
   // Function to recruit a player from reserves
-  std::tuple<Player, Player> recruit(Player &player);
+  Player add_without_selection(Player &player);
+  std::tuple<Player, Player> selection_process(Player &player);
 
   // overriding getclassname from display
   std::string GetClassName() const override;

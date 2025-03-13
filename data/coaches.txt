@@ -40,3 +40,10 @@ Nationality: Argentina
 Salary: 50
 Team: Portugal
 Tactics: 59
+
+Name: FranceCoach
+Age: 34
+Nationality: France
+Salary: 45
+Team: France
+Tactics: 75.6

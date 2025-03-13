@@ -20,6 +20,8 @@ protected:
 public:
   Team(std::string name);
   
+  bool check_player_exist(const Player &player) const;
+
   void set_coach(Coach new_coach);
   void add_to_squad(Player p, int i);
   void add_to_sub(Player p);

@@ -105,7 +105,96 @@ void NationalTeam::display_reserves() const
   }
 }
 
-std::tuple<Player, Player> NationalTeam::recruit(Player &player)
+void NationalTeam::fetch_players()
+{
+  std::string filename = "../data/players.txt";
+  std::ifstream file(filename);
+  if (!file.is_open())
+  {
+    std::cerr << "Failed to open file: " << filename << std::endl;
+    return;
+  }
+
+  std::string line;
+  while (std::getline(file, line))
+  {
+    if (line.find("Name: ") != std::string::npos)
+    {
+      // Extract the player's name
+      std::string name = Fifa::extractInfo<std::string>(line);
+
+      // Load the player object using Fifa::load_player
+      Player player = Fifa::load_player(name);
+
+      // Check if the player's nationality matches the national team's name
+      if (player.get_nationality() == this->get_name())
+      {
+        // Add the player to the reserve vector
+        this->reserve.push_back(player);
+        cout << "Player " << player.get_name() << " has been added to the Reserve List" << endl;
+      }
+    }
+  }
+
+  file.close();
+}
+
+Player NationalTeam::add_without_selection(Player &player)
+{
+  // Check if the player exists in the reserve vector
+  int reserve_index = -1;
+  for (size_t i = 0; i < this->reserve.size(); ++i)
+  {
+    if (this->reserve[i] == player)
+    {
+      reserve_index = i;
+      break;
+    }
+  }
+
+  if (reserve_index == -1)
+  {
+    std::cerr << "Error: Player is not in the reserves!" << std::endl;
+    return Player(); // Return an empty player in case of error
+  }
+
+  // Search squad for "NoName" player
+  for (int i = 0; i < 11; ++i)
+  {
+    if (this->squad[i].get_name() == "NoName")
+    {
+      // Replace the "NoName" player with the player
+      this->squad[i] = player;
+
+      // Update national team status
+      this->squad[i].set_info("national_team", this->get_name()); // Player now in squad
+
+      // Remove the player from the reserve vector
+      this->reserve.erase(this->reserve.begin() + reserve_index);
+
+      cout << player.get_name() << " added without selection from Reserve List" << endl;
+
+      // Return the added player
+      return this->squad[i];
+    }
+  }
+
+  // If no "NoName" player is found in the squad, add the player to the sub
+  this->sub.push_back(player);
+
+  // Update national team status
+  this->sub.back().set_info("national_team", this->get_name()); // Player now in sub
+
+  // Remove the player from the reserve vector
+  this->reserve.erase(this->reserve.begin() + reserve_index);
+
+  cout << player.get_name() << " added without selection from Reserve List" << endl;
+
+  // Return the added player
+  return this->sub.back();
+}
+
+std::tuple<Player, Player> NationalTeam::selection_process(Player &player)
 {
   // Find the index of the player in the reserve vector
   int reserve_index = -1;
@@ -136,14 +225,17 @@ std::tuple<Player, Player> NationalTeam::recruit(Player &player)
   // Check squad (fixed size of 11)
   for (int i = 0; i < 11; ++i)
   {
-    if (this->squad[i].get_type() == player.get_type() && this->squad[i].get_strength() < least_strength)
+    if (this->squad[i].get_type() == player.get_type())
     {
-      weakest_index = i;
-      least_strength = this->squad[i].get_strength();
+      if (this->squad[i].get_strength() < least_strength)
+      {
+        weakest_index = i;
+        least_strength = this->squad[i].get_strength();
+      }
     }
   }
 
-  // Check sub (assuming sub is a vector)
+  // Check sub (sub is a vector)
   for (size_t i = 0; i < this->sub.size(); ++i)
   {
     if (this->sub[i].get_type() == player.get_type() && this->sub[i].get_strength() < least_strength)
@@ -154,8 +246,48 @@ std::tuple<Player, Player> NationalTeam::recruit(Player &player)
     }
   }
 
-  // If no player of the same type is found, or if the least player's strength is greater than the reserve player's strength
-  if (weakest_index == -1 || least_strength >= res_player_strength)
+  // If no player of the same type is found, player is eligible
+  if (weakest_index == -1)
+  {
+    // Check for a "NoName" player in the squad
+    for (int i = 0; i < 11; ++i)
+    {
+      if (this->squad[i].get_name() == "NoName")
+      {
+        // Replace the "NoName" player with the player passed to the function
+        this->squad[i] = player;
+
+        // Update national team status
+        this->squad[i].set_info("national_team", this->get_name()); // Player now in squad
+
+        // Remove the player from the reserve vector
+        this->reserve.erase(this->reserve.begin() + reserve_index);
+
+        // Print the addition message
+        std::cout << "Selection passed: " << this->squad[i].get_name() << " added" << std::endl;
+
+        // Return the recruited player and an empty player
+        return std::make_tuple(this->squad[i], Player());
+      }
+    }
+
+    // If no "NoName" player is found in the squad, add the player to the sub
+    this->sub.push_back(player);
+
+    // Update national team status
+    this->sub.back().set_info("national_team", this->get_name()); // Player now in sub
+
+    // Remove the player from the reserve vector
+    this->reserve.erase(this->reserve.begin() + reserve_index);
+
+    // Print the addition message
+    std::cout << "Selection passed: " << this->sub.back().get_name() << " added" << std::endl;
+
+    // Return the recruited player and an empty player
+    return std::make_tuple(this->sub.back(), Player());
+  }
+  // If the least player's strength is greater than the reserve player's strength, player is not eligible
+  else if (least_strength >= res_player_strength)
   {
     std::cerr << "Error: No suitable player to replace in the squad or sub!" << std::endl;
     return std::make_tuple(Player(), Player()); // Return empty players in case of error

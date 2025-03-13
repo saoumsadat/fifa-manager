@@ -6,6 +6,29 @@ Team::Team(std::string name) : name(name)
   this->assigned_coach = Coach();
 }
 
+bool Team::check_player_exist(const Player &player) const
+{
+  // Check squad
+  for (const Player &squadPlayer : squad)
+  {
+    if (squadPlayer.get_name() == player.get_name())
+    {
+      return true; // Player found in squad
+    }
+  }
+
+  // Check substitutes
+  for (const Player &subPlayer : sub)
+  {
+    if (subPlayer.get_name() == player.get_name())
+    {
+      return true; // Player found in substitutes
+    }
+  }
+
+  return false; // Player not found
+}
+
 void Team::set_coach(Coach new_coach)
 {
   this->assigned_coach = new_coach;

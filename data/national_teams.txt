@@ -19,3 +19,12 @@ Squad: P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11
 Substitutes: SubP1,SubP2,SubP3,SubP4,SubP5
 WorldCup: 3
 Reserves: RP1,RP2,RP3,RP4,RP5
+
+
+
+Name: France
+Coach: FranceCoach
+Squad: F1,NoName,NoName,NoName,NoName,NoName,NoName,NoName,NoName,NoName,NoName
+Substitutes: 
+WorldCup: 0
+Reserves: 

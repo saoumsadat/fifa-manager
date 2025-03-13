@@ -10,12 +10,12 @@ Name: Argentina
 Coach: ArgentinaCoach
 Squad: A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11
 Substitutes: SubA1,SubA2,SubA3,SubA4,SubA5
-WorldCup: 1
+WorldCup: 7
 Reserves: RA1,RA2,RA3,RA4,RA5
 
 Name: Portugal
 Coach: PortugalCoach
 Squad: P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11
 Substitutes: SubP1,SubP2,SubP3,SubP4,SubP5
-WorldCup: 0
+WorldCup: 3
 Reserves: RP1,RP2,RP3,RP4,RP5

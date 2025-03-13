@@ -21,6 +21,8 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
   {
     cout << "\n1. National Coach Details" << endl;
     cout << "2. Display Players" << endl;
+    cout << "3. Swap Players (squad <-> sub)" << endl;
+    cout << "4. Recruit Player from Reserves" << endl;
     cout << "0. Go back" << endl;
     cout << "\nEnter choice: ";
     cin >> choice;
@@ -31,16 +33,27 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
     }
     else if (choice == 2)
     {
-
-      const Player *squad = national_team->get_squad();
-      for (int i = 0; i < 11; i++)
-      {
-        cout << squad[i].get_name() << endl;
-      }
+      national_team->display_players();
     }
     else if (choice == 0)
     {
       break;
+    }
+    else if (choice == 3)
+    {
+      string squad_player_name, sub_player_name;
+      cout << "Enter Squad Player to swap: ";
+      cin >> squad_player_name;
+      cout << "Enter Sub Player to swap: ";
+      cin >> sub_player_name;
+
+      Player squad_player = Fifa::load_player(squad_player_name);
+      Player sub_player = Fifa::load_player(sub_player_name);
+
+      national_team->swap_player(squad_player, sub_player);
+    }
+    else if (choice == 4)
+    {
     }
     else
     {
@@ -59,6 +72,9 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
   {
     cout << "\n1. Club Coach Details" << endl;
     cout << "2. Display Players" << endl;
+    cout << "3. Swap Players (squad <-> sub)" << endl;
+    cout << "4. Add Player to Transfer List" << endl;
+    cout << "5. Remove Player from Transfer List" << endl;
     cout << "0. Go back" << endl;
     cout << "\nEnter choice: ";
     cin >> choice;
@@ -69,12 +85,29 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
     }
     else if (choice == 2)
     {
+      club_team->display_players();
+    }
+    else if (choice == 3)
+    {
+      string squad_player_name, sub_player_name;
+      cout << "Enter Squad Player to swap: ";
+      cin >> squad_player_name;
+      cout << "Enter Sub Player to swap: ";
+      cin >> sub_player_name;
 
-      const Player *squad = club_team->get_squad();
-      for (int i = 0; i < 11; i++)
-      {
-        cout << squad[i].get_name() << endl;
-      }
+      Player squad_player = Fifa::load_player(squad_player_name);
+      Player sub_player = Fifa::load_player(sub_player_name);
+
+      club_team->swap_player(squad_player, sub_player);
+    }
+    else if (choice == 4)
+    {
+      string player_name;
+      Player player = Fifa::load_player(player_name);
+      club_team->add_to_transfer_list(player);
+    }
+    else if (choice == 5)
+    {
     }
     else if (choice == 0)
     {
@@ -135,7 +168,7 @@ void market_mode()
       cin >> player_name;
 
       auto [found_player, price] = Market::search_player(player_name);
-      
+
       if (price == -1)
       {
         cout << "Player not found" << endl;
@@ -143,7 +176,6 @@ void market_mode()
       }
 
       cout << found_player.get_name() << " - " << price << endl;
-
     }
     if (choice == 3)
     {
@@ -315,7 +347,7 @@ void edit_player(const std::string &player_name)
     {
       break;
     }
-    
+
     if (choice == 0)
     {
       // Save and exit
@@ -399,7 +431,7 @@ void edit_coach(const std::string &coach_name)
     {
       break;
     }
-    
+
     if (choice == 0)
     {
       // Save and exit
@@ -488,7 +520,7 @@ void edit_national_team(const std::string &national_team_name)
         cout << "Failed. Coach is already assigned to a different team" << endl;
         continue;
       }
-      
+
       if (new_coach.get_name().empty())
       {
         std::cerr << "Coach not found!" << std::endl;
@@ -650,6 +682,78 @@ void edit_mode()
   }
 }
 
+void rank_mode()
+{
+  
+  while (true)
+  {
+    cout << "\n1. Rank Players" << endl;
+    cout << "2. Rank Coaches" << endl;
+    cout << "3. Rank National Teams" << endl;
+    cout << "4. Rank Club Teams" << endl;
+    cout << "0. Go Back" << endl;
+    cout << "Enter choice: ";
+    int choice;
+    cin >> choice;
+
+    if (choice == 0)
+    {
+      break;
+    }
+    if (choice == 1)
+    {
+      //load first
+      Player::LoadPlayersFromFile();
+      Player::SortPlayers();
+
+      // Display players with serial numbers
+      std::cout << "Player Rankings:\n";
+      for (size_t i = 0; i < Player::players_count; ++i) {
+          std::cout << (i + 1) << ". " << Player::all_players[i].get_name() << std::endl;
+      }
+    }
+    if (choice == 2)
+    {
+      //load first
+      Coach::LoadCoachesFromFile();
+      Coach::SortCoaches();
+
+      // Display coaches with serial numbers
+      std::cout << "Coach Rankings:\n";
+      for (size_t i = 0; i < Coach::coaches_count; ++i) {
+          std::cout << (i + 1) << ". " << Coach::all_coaches[i].get_name() << std::endl;
+      }
+    }
+    if (choice == 3)
+    {
+
+      //load first
+      NationalTeam::LoadNationalTeamsFromFile();
+      NationalTeam::SortNationalTeams();
+
+      // Display teams with serial numbers
+      std::cout << "National Team Rankings:\n";
+      for (size_t i = 0; i < NationalTeam::national_teams_count; ++i)
+      {
+        std::cout << (i + 1) << ". " << NationalTeam::all_national_teams[i].get_name() << std::endl;
+      }
+    }
+    if (choice == 4)
+    {
+      //load first
+      ClubTeam::LoadClubTeamsFromFile();      
+      ClubTeam::SortClubTeams();
+
+      // Display teams with serial numbers
+      std::cout << "Club Team Rankings:\n";
+      for (size_t i = 0; i < ClubTeam::club_teams_count; ++i)
+      {
+        std::cout << (i + 1) << ". " << ClubTeam::all_club_teams[i].get_name() << std::endl;
+      }
+    }
+  }
+}
+
 int main()
 {
   int option;
@@ -659,6 +763,7 @@ int main()
     cout << "2. Enter Market" << endl;
     cout << "3. Register" << endl;
     cout << "4. Edit Info" << endl;
+    cout << "5. See Ranking" << endl;
     cout << "0. Exit" << endl;
     cout << "Enter choice: ";
     cin >> option;
@@ -673,6 +778,8 @@ int main()
       register_mode();
     if (option == 4)
       edit_mode();
+    if (option == 5)
+      rank_mode();
   }
   return 0;
 }

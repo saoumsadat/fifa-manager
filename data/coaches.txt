@@ -4,27 +4,27 @@ Age: 42
 Nationality: Portugal
 Salary: 100
 Team: Portugal
-Tactics: 85
+Tactics: 82
 
 Name: ArgentinaCoach
 Age: 42
 Nationality: Argentina
 Salary: 100
 Team: Argentina
-Tactics: 85
+Tactics: 86
 
 Name: ManCityCoach
 Age: 45
 Nationality: Argentina
 Salary: 50
 Team: ManCity
-Tactics: 83
+Tactics: 80
 
 Name: BrazilCoach
 Age: 42
 Nationality: Brazil
 Salary: 455
-Team: Braz
+Team: Brazil
 Tactics: 80
 
 Name: RealCoach
@@ -32,7 +32,7 @@ Age: 42
 Nationality: Portugal
 Salary: 50
 Team: RealMadrid
-Tactics: 33
+Tactics: 93
 
 Name: BarcaCoach
 Age: 42

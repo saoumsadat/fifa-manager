@@ -7,10 +7,16 @@
 #include <vector>
 #include <filesystem>
 #include <memory>
-#include "../include/national_team.hpp"
-#include "../include/club_team.hpp"
 #include "../include/player.hpp"
 #include "../include/coach.hpp"
+#include "../include/national_team.hpp"
+#include "../include/club_team.hpp"
+
+// Forward declaration of NationalTeam
+class Player;
+class Coach;
+class NationalTeam;
+class ClubTeam;
 
 using namespace std;
 

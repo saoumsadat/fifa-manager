@@ -105,8 +105,24 @@ void Market::buy_player(ClubTeam &club, Player &player)
   // Update the player's team status
   player.set_info("club_team", club.get_name());
 
-  // Add the player to the club's substitutes
-  club.add_to_sub(player);
+  // Check if there's a "NoName" player in the squad
+  bool added_to_squad = false;
+  for (int i = 0; i < 11; ++i)
+  {
+    if (club.get_squad()[i].get_name() == "NoName")
+    {
+      // Place the new player in the squad at this index
+      club.add_to_squad(player, i);
+      added_to_squad = true;
+      break;
+    }
+  }
+
+  // If no "NoName" player was found, add the player to substitutes
+  if (!added_to_squad)
+  {
+    club.add_to_sub(player);
+  }
 
   // Remove the player from the market file
   Fifa::remove_player_from_market(player.get_name());
@@ -121,7 +137,7 @@ void Market::buy_player(ClubTeam &club, Player &player)
 void Market::sell_player(ClubTeam &club, Player &player, int price)
 {
 
-  //remove from transfer list
+  // remove from transfer list
   bool is_removed_from_transfer_list = club.remove_from_transfer_list(player);
 
   if (!is_removed_from_transfer_list)
@@ -130,18 +146,27 @@ void Market::sell_player(ClubTeam &club, Player &player, int price)
     return;
   }
 
-  //change player status
+  // Remove from squad or substitutes
+  bool is_removed_from_team = club.remove_player(player);
+
+  if (!is_removed_from_team)
+  {
+    cout << "Player not found in squad or substitutes" << endl;
+    return;
+  }
+
+  // change player status
   player.set_info("club_team", "None");
 
-  //add price to fund
+  // add price to fund
   club.set_funds(club.get_funds() + price);
 
-  //saving to market.txt
+  // saving to market.txt
   Fifa::add_player_to_market(player.get_name(), price);
 
   std::cout << "Player " << player.get_name() << " has been sold by " << club.get_name() << " for " << price << "!" << std::endl;
 
-  //updating
+  // updating
   Fifa::update_club_team(club);
   Fifa::update_player(player);
 }

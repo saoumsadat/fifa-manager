@@ -591,8 +591,15 @@ Team *Fifa::load_team_data(ifstream &file, const string &team_name)
   if (getline(file, line))
   {
     string coach_name = extractInfo<string>(line);
-    Coach loaded_coach = Fifa::load_coach(coach_name);
-    team->set_coach(loaded_coach);
+    if (coach_name == "NotAssigned")
+    {
+      team->set_coach(Coach());
+    }
+    else
+    {
+      Coach loaded_coach = Fifa::load_coach(coach_name);
+      team->set_coach(loaded_coach);
+    }
   }
 
   // squad
@@ -604,8 +611,15 @@ Team *Fifa::load_team_data(ifstream &file, const string &team_name)
     int i = 0; // fixed 11 players
     while (getline(ss, player_name, ','))
     {
-      Player squad_player = Fifa::load_player(player_name);
-      team->add_to_squad(squad_player, i);
+      if (player_name == "NoName")
+      {
+        team->add_to_squad(Player(), i);
+      }
+      else
+      {
+        Player squad_player = Fifa::load_player(player_name);
+        team->add_to_squad(squad_player, i);
+      }
       i++;
     }
   }

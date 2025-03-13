@@ -23,7 +23,16 @@ private:
   static int players_count;
 
 public:
-  Player() : Person("NoName", 0) {} // Default constructor
+  Player() : Person("NoName", 0) {
+    this->salary = 0;
+    this->type = "Unknown";
+    this->national_team = "None";
+    this->club_team = "None";
+    this->goals = 0;
+    this->atk = 0;
+    this->def = 0;
+  } // Default constructor
+
   Player(const std::string &name, int age);
 
   using Person::set_info; // Bring back base class methods

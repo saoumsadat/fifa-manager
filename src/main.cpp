@@ -17,6 +17,7 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
   NationalTeam *national_team = dynamic_cast<NationalTeam *>(team_ptr.get());
 
   int choice;
+  Player recruited_player, replaced_player;
   while (true)
   {
     cout << "\n1. National Coach Details" << endl;
@@ -57,14 +58,36 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
     }
     else if (choice == 4)
     {
+      national_team->display_reserves();
     }
     else if (choice == 5)
     {
+      if (recruited_player.get_name() != "NoName")
+      {
+        cout << "You need to save and exit first after recruiting once." << endl;
+        continue;
+      }
+      string player_to_recruit_name;
+      cout << "Enter Player name to recruit: ";
+      cin >> player_to_recruit_name;
 
+      Player player_to_recruit = Fifa::load_player(player_to_recruit_name);
+      std::tie(recruited_player, replaced_player) = national_team->recruit(player_to_recruit);
     }
     else if (choice == 6)
     {
+    }
+    else if (choice == 0)
+    {
+      if (recruited_player.get_name() != "NoName")
+      {
+        Fifa::update_player(recruited_player);
+        Fifa::update_player(replaced_player);
+      }
 
+      Fifa::update_national_team(*national_team);
+
+      break;
     }
     else
     {
@@ -712,7 +735,7 @@ void edit_mode()
 
 void rank_mode()
 {
-  
+
   while (true)
   {
     cout << "\n1. Rank Players" << endl;
@@ -730,32 +753,34 @@ void rank_mode()
     }
     if (choice == 1)
     {
-      //load first
+      // load first
       Player::LoadPlayersFromFile();
       Player::SortPlayers();
 
       // Display players with serial numbers
       std::cout << "Player Rankings:\n";
-      for (size_t i = 0; i < Player::players_count; ++i) {
-          std::cout << (i + 1) << ". " << Player::all_players[i].get_name() << std::endl;
+      for (size_t i = 0; i < Player::players_count; ++i)
+      {
+        std::cout << (i + 1) << ". " << Player::all_players[i].get_name() << std::endl;
       }
     }
     if (choice == 2)
     {
-      //load first
+      // load first
       Coach::LoadCoachesFromFile();
       Coach::SortCoaches();
 
       // Display coaches with serial numbers
       std::cout << "Coach Rankings:\n";
-      for (size_t i = 0; i < Coach::coaches_count; ++i) {
-          std::cout << (i + 1) << ". " << Coach::all_coaches[i].get_name() << std::endl;
+      for (size_t i = 0; i < Coach::coaches_count; ++i)
+      {
+        std::cout << (i + 1) << ". " << Coach::all_coaches[i].get_name() << std::endl;
       }
     }
     if (choice == 3)
     {
 
-      //load first
+      // load first
       NationalTeam::LoadNationalTeamsFromFile();
       NationalTeam::SortNationalTeams();
 
@@ -768,8 +793,8 @@ void rank_mode()
     }
     if (choice == 4)
     {
-      //load first
-      ClubTeam::LoadClubTeamsFromFile();      
+      // load first
+      ClubTeam::LoadClubTeamsFromFile();
       ClubTeam::SortClubTeams();
 
       // Display teams with serial numbers

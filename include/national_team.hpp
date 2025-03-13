@@ -36,6 +36,11 @@ public:
   // Static function to sort national teams using selection sort
   static void SortNationalTeams();
 
+  void display_reserves() const;
+
+  // Function to recruit a player from reserves
+  std::tuple<Player, Player> recruit(Player &player);
+
   // overriding getclassname from display
   std::string GetClassName() const override;
 

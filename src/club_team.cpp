@@ -75,7 +75,10 @@ void ClubTeam::LoadClubTeamsFromFile()
   file.close();
 }
 
-ClubTeam::ClubTeam(std::string team_name) : Team(team_name) {}
+ClubTeam::ClubTeam(std::string team_name) : Team(team_name) {
+  this->ucl = 0;
+  this->funds = 0;
+}
 
 bool ClubTeam::check_player_exist(const Player &player) const
 {

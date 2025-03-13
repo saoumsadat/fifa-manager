@@ -179,7 +179,7 @@ Age: 19
 Nationality: Portugal
 Salary: 1000
 Type: Midfielder
-NationalTeam: Portugal
+NationalTeam: None
 ClubTeam: None
 Goals: 163
 Attack: 67.8
@@ -190,7 +190,7 @@ Age: 18
 Nationality: Portugal
 Salary: 1000
 Type: Defender
-NationalTeam: Portugal
+NationalTeam: None
 ClubTeam: None
 Goals: 128
 Attack: 39.6
@@ -201,7 +201,7 @@ Age: 17
 Nationality: Portugal
 Salary: 1000
 Type: Attacker
-NationalTeam: Portugal
+NationalTeam: None
 ClubTeam: None
 Goals: 207
 Attack: 91.4
@@ -212,7 +212,7 @@ Age: 16
 Nationality: Portugal
 Salary: 1000
 Type: Midfielder
-NationalTeam: Portugal
+NationalTeam: None
 ClubTeam: None
 Goals: 172
 Attack: 70.3
@@ -223,7 +223,7 @@ Age: 15
 Nationality: Portugal
 Salary: 1000
 Type: Defender
-NationalTeam: Portugal
+NationalTeam: None
 ClubTeam: None
 Goals: 137
 Attack: 40.8
@@ -410,7 +410,7 @@ Age: 19
 Nationality: Argentina
 Salary: 1000
 Type: Midfielder
-NationalTeam: Argentina
+NationalTeam: None
 ClubTeam: None
 Goals: 162
 Attack: 68.4
@@ -421,7 +421,7 @@ Age: 18
 Nationality: Argentina
 Salary: 1000
 Type: Defender
-NationalTeam: Argentina
+NationalTeam: None
 ClubTeam: None
 Goals: 129
 Attack: 39.8
@@ -432,7 +432,7 @@ Age: 17
 Nationality: Argentina
 Salary: 1000
 Type: Attacker
-NationalTeam: Argentina
+NationalTeam: None
 ClubTeam: None
 Goals: 204
 Attack: 90.2
@@ -443,7 +443,7 @@ Age: 16
 Nationality: Argentina
 Salary: 1000
 Type: Midfielder
-NationalTeam: Argentina
+NationalTeam: None
 ClubTeam: None
 Goals: 173
 Attack: 71.8
@@ -454,7 +454,7 @@ Age: 15
 Nationality: Argentina
 Salary: 1000
 Type: Defender
-NationalTeam: Argentina
+NationalTeam: None
 ClubTeam: None
 Goals: 138
 Attack: 41.3
@@ -641,7 +641,7 @@ Age: 19
 Nationality: Brazil
 Salary: 1000
 Type: Midfielder
-NationalTeam: Brazil
+NationalTeam: None
 ClubTeam: None
 Goals: 161
 Attack: 67.9
@@ -652,7 +652,7 @@ Age: 18
 Nationality: Brazil
 Salary: 1000
 Type: Defender
-NationalTeam: Brazil
+NationalTeam: None
 ClubTeam: None
 Goals: 127
 Attack: 39.5
@@ -663,7 +663,7 @@ Age: 17
 Nationality: Brazil
 Salary: 1000
 Type: Attacker
-NationalTeam: Brazil
+NationalTeam: None
 ClubTeam: None
 Goals: 203
 Attack: 90.3
@@ -674,7 +674,7 @@ Age: 16
 Nationality: Brazil
 Salary: 1000
 Type: Midfielder
-NationalTeam: Brazil
+NationalTeam: None
 ClubTeam: None
 Goals: 171
 Attack: 71.1
@@ -685,7 +685,7 @@ Age: 15
 Nationality: Brazil
 Salary: 1000
 Type: Defender
-NationalTeam: Brazil
+NationalTeam: None
 ClubTeam: None
 Goals: 139
 Attack: 41.4

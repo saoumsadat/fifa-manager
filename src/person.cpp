@@ -3,6 +3,7 @@
 
 Person::Person(std::string name, int age) : name(name), age(age) {
   this->salary = 50;
+  this->nationality = "Unknown";
 }
 
 std::string Person::get_name() const {

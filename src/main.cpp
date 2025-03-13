@@ -22,8 +22,11 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
     cout << "\n1. National Coach Details" << endl;
     cout << "2. Display Players" << endl;
     cout << "3. Swap Players (squad <-> sub)" << endl;
-    cout << "4. Recruit Player from Reserves" << endl;
-    cout << "0. Go back" << endl;
+    cout << "4. Check Reserves" << endl;
+    cout << "5. Recruit Players from Reserves" << endl;
+    cout << "6. Fetch Players with same nationality" << endl;
+    cout << "0. Save and Exit" << endl;
+    cout << "-1. Go Back" << endl;
     cout << "\nEnter choice: ";
     cin >> choice;
 
@@ -35,7 +38,7 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
     {
       national_team->display_players();
     }
-    else if (choice == 0)
+    else if (choice == -1)
     {
       break;
     }
@@ -55,6 +58,14 @@ void national_coach_mode(unique_ptr<Team> &team_ptr)
     else if (choice == 4)
     {
     }
+    else if (choice == 5)
+    {
+
+    }
+    else if (choice == 6)
+    {
+
+    }
     else
     {
       cout << "Invalid choice" << endl;
@@ -73,8 +84,9 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
     cout << "\n1. Club Coach Details" << endl;
     cout << "2. Display Players" << endl;
     cout << "3. Swap Players (squad <-> sub)" << endl;
-    cout << "4. Add Player to Transfer List" << endl;
-    cout << "5. Remove Player from Transfer List" << endl;
+    cout << "4. Check Transfer List" << endl;
+    cout << "5. Add Player to Transfer List" << endl;
+    cout << "6. Remove Player from Transfer List" << endl;
     cout << "0. Save and exit" << endl;
     cout << "-1. Go back" << endl;
     cout << "\nEnter choice: ";
@@ -103,13 +115,17 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
     }
     else if (choice == 4)
     {
+      club_team->display_transfer_list();
+    }
+    else if (choice == 5)
+    {
       string player_name;
       cout << "Enter Player Name: ";
       cin >> player_name;
       Player player = Fifa::load_player(player_name);
       club_team->add_to_transfer_list(player);
     }
-    else if (choice == 5)
+    else if (choice == 6)
     {
       string player_name;
       cout << "Enter Player Name: ";

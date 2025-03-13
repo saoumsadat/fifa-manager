@@ -185,6 +185,21 @@ std::vector<Player> ClubTeam::get_transfer_list() const
   return this->transfer_list;
 }
 
+void ClubTeam::display_transfer_list() const
+{
+  if (transfer_list.empty())
+  {
+    std::cout << "Transfer list is empty!" << std::endl;
+    return;
+  }
+
+  std::cout << "Transfer List: " << ":\n";
+  for (const Player &player : transfer_list)
+  {
+    std::cout << player.get_name() << "\n";
+  }
+}
+
 int ClubTeam::get_funds() const
 {
   return this->funds;

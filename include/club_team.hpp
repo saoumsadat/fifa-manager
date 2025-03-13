@@ -46,6 +46,8 @@ public:
   std::vector<Player> get_transfer_list() const;
   int get_funds() const;
 
+  void display_transfer_list() const;
+
   // Operator overloading as member functions
   bool operator>(const ClubTeam &other) const;
   bool operator<(const ClubTeam &other) const;

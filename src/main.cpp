@@ -228,6 +228,7 @@ void club_coach_mode(unique_ptr<Team> &team_ptr)
     else if (choice == 0)
     {
       Fifa::update_club_team(*club_team);
+      break;
     }
     else
     {
@@ -242,7 +243,7 @@ void coach_mode()
   cout << "\nEnter Team Name:" << endl;
   cin >> team_name;
 
-  std::unique_ptr<Team> loaded_team = check_return_team_type(team_name);
+  std::unique_ptr<Team> loaded_team = Fifa::check_return_team_type(team_name);
 
   string loaded_team_cls = loaded_team->GetClassName();
 

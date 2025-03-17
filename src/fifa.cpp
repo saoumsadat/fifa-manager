@@ -724,6 +724,7 @@ ClubTeam Fifa::load_club_team_data(const string &club_team_name)
   return club_team;
 }
 
+//checks both of the txt files and find the name there
 std::unique_ptr<Team> Fifa::check_return_team_type(const string &team_name)
 {
   // Check club_teams.txt first
